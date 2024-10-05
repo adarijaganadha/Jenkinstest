@@ -1,0 +1,1323 @@
+developer@Ishq:/mnt/c/Windows/System32$ cd ~
+developer@Ishq:~$ sudo systemctl status jenkins
+● jenkins.service - Jenkins Continuous Integration Server
+     Loaded: loaded (/lib/systemd/system/jenkins.service; enabled; vendor preset: enabled)
+     Active: active (running) since Sat 2024-10-05 07:34:27 IST; 23s ago
+   Main PID: 267 (java)
+      Tasks: 79 (limit: 9337)
+     Memory: 954.1M
+     CGroup: /system.slice/jenkins.service
+             └─267 /usr/bin/java -Djava.awt.headless=true -jar /usr/share/java/jenkins.war --webroot=/var/cache/jenkins>
+Oct 05 07:34:27 Ishq jenkins[267]: 2024-10-05 02:04:27.247+0000 [id=95]        INFO        hudson.util.Retrier#start: A>Oct 05 07:34:27 Ishq jenkins[267]: 2024-10-05 02:04:27.262+0000 [id=68]        INFO        jenkins.InitReactorRunner$1#>Oct 05 07:34:27 Ishq jenkins[267]: 2024-10-05 02:04:27.292+0000 [id=34]        INFO        hudson.lifecycle.Lifecycle#o>Oct 05 07:34:27 Ishq systemd[1]: Started Jenkins Continuous Integration Server.
+Oct 05 07:34:35 Ishq jenkins[267]: 2024-10-05 02:04:35.779+0000 [id=95]        INFO        h.m.DownloadService$Download>Oct 05 07:34:36 Ishq jenkins[267]: 2024-10-05 02:04:36.898+0000 [id=95]        INFO        h.m.DownloadService$Download>Oct 05 07:34:38 Ishq jenkins[267]: 2024-10-05 02:04:38.285+0000 [id=95]        INFO        h.m.DownloadService$Download>Oct 05 07:34:39 Ishq jenkins[267]: 2024-10-05 02:04:39.147+0000 [id=95]        WARNING        h.m.DownloadService$Downl>Oct 05 07:34:40 Ishq jenkins[267]: 2024-10-05 02:04:40.548+0000 [id=95]        INFO        h.m.DownloadService$Download>Oct 05 07:34:40 Ishq jenkins[267]: 2024-10-05 02:04:40.549+0000 [id=95]        INFO        hudson.util.Retrier#start: P>lines 1-19/19 (END)
+developer@Ishq:~$ ls
+Jenkinstest  mern
+developer@Ishq:~$ ls -l Jenkinstest/
+total 4
+-rw-r--r-- 1 developer developer 6 Oct  4 09:50 file1
+developer@Ishq:~$ usermod -aG second_user_group first_user
+od 750 /path/to/second/user/fileusermod: group 'second_user_group' does not exist
+developer@Ishq:~$ usermod -aG  jenkins developer
+usermod: Permission denied.
+usermod: cannot lock /etc/passwd; try again later.
+developer@Ishq:~$ sudo usermod -aG  jenkins developer
+developer@Ishq:~$ ls -l
+total 8
+drwxr-xr-x 3 developer developer 4096 Oct  4 10:31 Jenkinstest
+drwxrwxr-x 7 developer developer 4096 Oct  3 11:55 mern
+developer@Ishq:~$ getfacl Jenkinstest/
+Command 'getfacl' not found, but can be installed with:
+sudo apt install acl
+developer@Ishq:~$ stat Jenkinstest
+  File: Jenkinstest
+  Size: 4096            Blocks: 8          IO Block: 4096   directory
+Device: 820h/2080d      Inode: 66224       Links: 3
+Access: (0755/drwxr-xr-x)  Uid: ( 1000/developer)   Gid: ( 1000/developer)
+Access: 2024-10-05 07:46:12.720092699 +0530
+Modify: 2024-10-04 10:31:28.883117091 +0530
+Change: 2024-10-04 10:31:28.883117091 +0530
+ Birth: 2024-10-04 09:50:09.839149589 +0530
+developer@Ishq:~$ udermod -aG developer jenkins
+Command 'udermod' not found, did you mean:
+  command 'usermod' from deb passwd (1:4.8.1-2ubuntu2.2)
+Try: sudo apt install <deb name>
+developer@Ishq:~$ sudo usermod -aG developer jenkins
+developer@Ishq:~$ chmod 755 Jenkinstest
+developer@Ishq:~$ stat Jenkinstest
+  File: Jenkinstest
+  Size: 4096            Blocks: 8          IO Block: 4096   directory
+Device: 820h/2080d      Inode: 66224       Links: 3
+Access: (0755/drwxr-xr-x)  Uid: ( 1000/developer)   Gid: ( 1000/developer)
+Access: 2024-10-05 07:46:12.720092699 +0530
+Modify: 2024-10-04 10:31:28.883117091 +0530
+Change: 2024-10-05 07:53:13.669522435 +0530
+ Birth: 2024-10-04 09:50:09.839149589 +0530
+developer@Ishq:~$ getfacl /path/to/folder | grep -c "user:" | wc -l
+etfacl /path/to/folder | grep -c "group:" | wc -lCommand 'getfacl' not found, but can be installed with:
+sudo apt install acl
+1
+developer@Ishq:~$ getfacl Jenkinstest | grep -c "group:" | wc -l
+Command 'getfacl' not found, but can be installed with:
+sudo apt install acl
+1
+developer@Ishq:~$ ls -l Jenkinstest/
+total 4
+-rw-r--r-- 1 developer developer 6 Oct  4 09:50 file1
+developer@Ishq:~$ ls -l Jenkinstest
+total 4
+-rw-r--r-- 1 developer developer 6 Oct  4 09:50 file1
+developer@Ishq:~$ ls -l /home/developer/Jenkinstest
+total 4
+-rw-r--r-- 1 developer developer 6 Oct  4 09:50 file1
+developer@Ishq:~$ sudo su jenkins
+jenkins@Ishq:/home/developer$ cat file1
+cat: file1: No such file or directory
+jenkins@Ishq:/home/developer$ cd Jenkinstest/
+jenkins@Ishq:/home/developer/Jenkinstest$ cat file1
+Hello
+jenkins@Ishq:/home/developer/Jenkinstest$ cd ~
+jenkins@Ishq:~$ ls -l /home/developer/Jenkinstest
+total 4
+-rw-r--r-- 1 developer developer 6 Oct  4 09:50 file1
+jenkins@Ishq:~$ chmod 755 /home/developer/Jenkinstest
+chmod: changing permissions of '/home/developer/Jenkinstest': Operation not permitted
+jenkins@Ishq:~$ sudo chmod 755 /home/developer/Jenkinstest
+jenkins@Ishq:~$ ls -l /home/developer/Jenkinstest
+total 4
+-rw-r--r-- 1 developer developer 6 Oct  4 09:50 file1
+jenkins@Ishq:~$ ls -ld /mnt/c/Users/YourUsername/
+ls: cannot access '/mnt/c/Users/YourUsername/': No such file or directory
+jenkins@Ishq:~$ sudo su developer
+developer@Ishq:/var/lib/jenkins$ ls -ld /mnt/c/Users/YourUsername/
+ls: cannot access '/mnt/c/Users/YourUsername/': No such file or directory
+developer@Ishq:/var/lib/jenkins$ ls /mnt/
+c  d  e  f  wsl  wslg
+developer@Ishq:/var/lib/jenkins$ sudo mount -t drvfs C: /mnt/c
+developer@Ishq:/var/lib/jenkins$ ls /mnt/c/Users/
+'All Users'   Default  'Default User'   Public   defaultuser100000   desktop.ini   jagan
+developer@Ishq:/var/lib/jenkins$ ls -ld /mnt/c/Users/jagan/
+drwxrwxrwx 1 root root 512 Oct  3 14:01 /mnt/c/Users/jagan/
+developer@Ishq:/var/lib/jenkins$ wsl -l -v
+Command 'wsl' not found, but can be installed with:
+sudo apt install wsl
+developer@Ishq:/var/lib/jenkins$ wsl -l -v
+Command 'wsl' not found, but can be installed with:
+sudo apt install wsl
+developer@Ishq:/var/lib/jenkins$ cd ~
+developer@Ishq:~$ ls /mnt/c/Users/
+'All Users'   Default  'Default User'   Public   defaultuser100000   desktop.ini   jagan
+developer@Ishq:~$ sudo mount -t drvfs C: /mnt/c
+developer@Ishq:~$ developer@Ishq:/var/lib/jenkins$ ls -ld /mnt/c/Users/jagan/
+bash: developer@Ishq:/var/lib/jenkins$: No such file or directory
+developer@Ishq:~$ cd ~
+developer@Ishq:~$ ls -ld /mnt/c/Users/YourUsername/
+ls: cannot access '/mnt/c/Users/YourUsername/': No such file or directory
+developer@Ishq:~$ ls -ld /mnt/c/Users/jagan/
+drwxrwxrwx 1 root root 512 Oct  3 14:01 /mnt/c/Users/jagan/
+developer@Ishq:~$ sudo usermod -aG developer jenkins
+developer@Ishq:~$ sudo chmod -R g+rwx /home/developer/Jenkinstest
+developer@Ishq:~$ ls -l /home/developer/Jenkinstest/file1
+-rw-rwxr-- 1 developer developer 6 Oct  4 09:50 /home/developer/Jenkinstest/file1
+developer@Ishq:~$ sudo usermod -aG developer jenkins
+developer@Ishq:~$ groups jenkins
+jenkins : jenkins developer
+developer@Ishq:~$ sudo service jenkins restart
+developer@Ishq:~$ ls /mnt/c/Users/
+'All Users'   Default  'Default User'   Public   defaultuser100000   desktop.ini   jagan
+developer@Ishq:~$ ls /mnt/c/Users/
+'All Users'   Default  'Default User'   Public   defaultuser100000   desktop.ini   jagan
+developer@Ishq:~$ ls /mnt/d/
+'$RECYCLE.BIN'  'AWS Projects'                'Cyber Security'  'System Volume Information'
+'AWS Devops'    'Amazon Project Scripts.zip'   Editing           TeraBoxDownload
+'AWS Devops 2'   Books                        'Jira guide.pdf'   Websites
+developer@Ishq:~$ ls -l /mnt/d/AwsDevops
+ls: cannot access '/mnt/d/AwsDevops': No such file or directory
+developer@Ishq:~$ sudo mount -t drvfs C: /mnt/c
+developer@Ishq:~$ sudo mount -t drvfs D: /mnt/d
+developer@Ishq:~$ sudo mount -t drvfs C: /mnt/c
+developer@Ishq:~$ ls -l /mnt/d/AwsDevops
+ls: cannot access '/mnt/d/AwsDevops': No such file or directory
+developer@Ishq:~$ ls -l "/mnt/d/AWS Devops/"
+total 2828540
+-r-xr-xr-x 1 root root      1674 Sep 21 13:38 Devop.pem
+-rwxrwxrwx 1 root root    234734 Jun 22 14:32 Linux.docx
+-rwxrwxrwx 1 root root 120554065 Jul 10 19:03 S10_Jun27.mp4
+-rwxrwxrwx 1 root root 126900209 Jul  8 13:23 S11_Jun28.mp4
+-rwxrwxrwx 1 root root  83489265 Jul  8 10:41 S12_Jun29.mp4
+-rwxrwxrwx 1 root root 108916535 Jul 10 19:03 S13_Jul1.mp4
+-rwxrwxrwx 1 root root  85060806 Jul  8 10:47 S14_Jul2.mp4
+-rwxrwxrwx 1 root root  99628834 Jul  8 10:47 S15_Jul3.mp4
+-rwxrwxrwx 1 root root 162694530 Jul  8 10:38 S16_Jul4.mp4
+-rwxrwxrwx 1 root root  87123078 Jul  8 10:34 S17_Jul5.mp4
+-rwxrwxrwx 1 root root  98419603 Jul 10 18:58 S18_Jul8.mp4
+-rwxrwxrwx 1 root root  93917557 Jul 10 19:02 S19_Jul9.mp4
+-rwxrwxrwx 1 root root  92492679 Jun 21 18:16 S1_June12th.mp4
+-rwxrwxrwx 1 root root  56757224 Sep 19 13:54 S20_Jul10.mp4
+-rwxrwxrwx 1 root root  84336097 Sep 19 13:54 S21_Jul11.mp4
+-rwxrwxrwx 1 root root   1319174 Sep 19 13:54 S22_Jul12.mp4
+-rwxrwxrwx 1 root root  13383508 Sep 19 13:55 S23_Jul13.mp4
+-rwxrwxrwx 1 root root  98475270 Sep 19 13:55 S24_Jul16.mp4
+-rwxrwxrwx 1 root root 103179997 Sep 19 13:55 S25_Jul17.mp4
+-rwxrwxrwx 1 root root 117784933 Sep 19 13:55 S26_Jul18.mp4
+-rwxrwxrwx 1 root root  59676060 Sep 19 13:55 S27_Jul19.mp4
+-rwxrwxrwx 1 root root  76772986 Sep 19 13:55 S28_Jul22.mp4
+-rwxrwxrwx 1 root root  93751681 Sep 19 13:55 S29_Jul24.mp4
+-rwxrwxrwx 1 root root 107258468 Jun 21 18:16 S2_June14th.mp4
+-rwxrwxrwx 1 root root  88279626 Sep 19 13:56 S30__Jul25.mp4
+-rwxrwxrwx 1 root root  57016774 Sep 19 13:56 S31_July26th_part1.mp4
+-rwxrwxrwx 1 root root  26238764 Sep 19 13:56 S31_july27_part2.mp4
+-rwxrwxrwx 1 root root  85294699 Jun 21 18:17 S3_June17th.mp4
+-rwxrwxrwx 1 root root  75879055 Jun 21 18:17 S4_June18th.mp4
+-rwxrwxrwx 1 root root 118350840 Jun 21 18:17 S5_June19th.mp4
+-rwxrwxrwx 1 root root  60836624 Jul  1 19:03 S6_Jun23.mp4
+-rwxrwxrwx 1 root root 140329398 Jul  1 19:04 S7_Jun24.mp4
+-rwxrwxrwx 1 root root 142636829 Jul  2 20:47 S8_Jun25.mp4
+-rwxrwxrwx 1 root root 129326024 Jul  2 20:47 S9_Jun26.mp4
+-rwxrwxrwx 1 root root     12095 Sep 21 14:08 Token.docx
+-rwxrwxrwx 1 root root     15463 Sep 25 21:48 goals.docx
+developer@Ishq:~$ cd /mnt/c/Users/jagan/Downloads
+developer@Ishq:/mnt/c/Users/jagan/Downloads$ ls -l
+total 15834976
+-rwxrwxrwx 1 root root    1048752 Sep 27 14:04 '(Audio) WhatsApp Video 2024-09-27 at 12.01.32_42597fcd.m4a'
+-rwxrwxrwx 1 root root   78155494 Dec 25  2023 '0001_I'\''m_Luffy!_The_Man_Who'\''s_Gonna.mkv'
+-rwxrwxrwx 1 root root   78111656 Dec 25  2023 '0002_Enter_the_Great_Swordsman!.mkv'
+-rwxrwxrwx 1 root root   78057270 Dec 25  2023 '0003_Morgan_versus_Luffy!_Who'\''s.mkv'
+-rwxrwxrwx 1 root root   78005127 Dec 25  2023 '0004 - Luffy'\''s Past! Enter Red-Haired Shanks.mkv'
+-rwxrwxrwx 1 root root   78049529 Dec 25  2023 '0005_A_Terrifying_Mysterious_Power!.mkv'
+-rwxrwxrwx 1 root root   78125815 Dec 25  2023 '0006 - Desperate Situation! Beast Tamer Mohji vs. Luffy.mkv'
+-rwxrwxrwx 1 root root   78029879 Dec 25  2023 '0007 - Epic Showdown! Swordsman Zoro vs. Acrobat Cabaji.mkv'
+-rwxrwxrwx 1 root root   77646989 Dec 25  2023 '0008 - Who is the Victor Devil Fruit Power Showdown.mkv'
+-rwxrwxrwx 1 root root   77626733 Dec 25  2023 '0009 - The Honorable Liar Captain Usopp.mkv'
+-rwxrwxrwx 1 root root   77518059 Dec 25  2023 '0010 - The Weirdest Guy Ever! Jango the Hypnotist.mkv'
+-rwxrwxrwx 1 root root      87979 Mar  6  2024 '0535_001 (1).pdf'
+-rwxrwxrwx 1 root root      87979 Mar  6  2024 '0535_001 (2).pdf'
+-rwxrwxrwx 1 root root      87979 Mar  6  2024  0535_001.pdf
+-rwxrwxrwx 1 root root     251133 Mar  6  2024 '0536_001 (1).pdf'
+-rwxrwxrwx 1 root root     251133 Mar  6  2024 '0536_001 (2).pdf'
+-rwxrwxrwx 1 root root     251133 Mar  6  2024  0536_001.pdf
+-rwxrwxrwx 1 root root     325675 May 22 22:14 '0582 ELON MOTORS ENGINEERING.pdf'
+-rwxrwxrwx 1 root root      33145 Jul  2 14:20  1.USR24547RJMHT.pdf
+-rwxrwxrwx 1 root root     203815 Dec 19  2023  108142.jpg
+-rwxrwxrwx 1 root root     717919 Dec 19  2023  110948.jpg
+-rwxrwxrwx 1 root root    2877791 Dec 19  2023  1299025.png
+-rwxrwxrwx 1 root root    1839623 Dec 19  2023  1300588.png
+-rwxrwxrwx 1 root root    1765653 Dec 19  2023  1300590.png
+-rwxrwxrwx 1 root root   10689791 Dec 19  2023  1337463.png
+-rwxrwxrwx 1 root root    1378395 Dec 19  2023  144565.jpg
+-rwxrwxrwx 1 root root      13181 Mar 15  2024  1709748372-AdminHR.docx
+-rwxrwxrwx 1 root root    4773257 Apr 17 11:58  1713335281433.jpg
+-rwxrwxrwx 1 root root    4829400 Apr 17 11:58  1713335281438.jpg
+-rwxrwxrwx 1 root root    5763923 Apr 17 11:58  1713335281443.jpg
+-rwxrwxrwx 1 root root    5137325 Apr 17 11:58  1713335281451.jpg
+-rwxrwxrwx 1 root root   18942720 Apr 19 13:49  1713514758130.jpg
+-rwxrwxrwx 1 root root   18137359 Apr 19 13:49  1713514758140.jpg
+-rwxrwxrwx 1 root root   18577176 Apr 19 13:49  1713514758151.jpg
+-rwxrwxrwx 1 root root   18793683 Apr 19 13:49  1713514758161.jpg
+-rwxrwxrwx 1 root root          0 Apr 27 21:42  1714234287541.jpg
+-rwxrwxrwx 1 root root          0 Apr 27 21:42  1714234287552.jpg
+-rwxrwxrwx 1 root root          0 Apr 27 21:42  1714234287570.jpg
+-rwxrwxrwx 1 root root          0 Apr 27 21:42  1714234287583.jpg
+-rwxrwxrwx 1 root root     472269 Sep 20 19:56  1726842408175.jpg
+-rwxrwxrwx 1 root root     876243 Sep 20 19:57  1726842408175.png
+-rwxrwxrwx 1 root root      61249 Jun 25 09:03  1752314.jpg
+-rwxrwxrwx 1 root root     430530 Dec 19  2023  184779.jpg
+-rwxrwxrwx 1 root root     299250 May 31 14:05  24016100008703.pdf
+-rwxrwxrwx 1 root root  237897425 May  6 20:13 '25 SSIS - Deployment.mp4'
+drwxrwxrwx 1 root root        512 Jan 25  2024  25227762-brighter-moments-ShareAE.com
+-rwxrwxrwx 1 root root     317260 Jun 22 14:22  310745236-002b3326-a006-4fa4-81de-dee81c4dfb20.png
+-rwxrwxrwx 1 root root      78274 Jun 22 14:22  310745411-1096e273-7988-415d-974a-0ce7aded7cbf.png
+-rwxrwxrwx 1 root root     152998 Jun 22 14:22  310745476-f271388b-3539-4f74-88e3-e2ce6829b2e6.png
+-rwxrwxrwx 1 root root      68115 Jun 22 14:22  310745660-7c142db4-9bc6-44b5-8302-5c4ffa408ee1.png
+drwxrwxrwx 1 root root        512 Jan 25  2024  36149051-instagram-birthday-wishes-AEdownload.com
+-rwxrwxrwx 1 root root      27715 Mar  8  2024  384.pdf
+-rwxrwxrwx 1 root root     754445 Jun  8 10:23  4089686415575077_07052024.pdf
+-rwxrwxrwx 1 root root    1749013 Dec 19  2023  410582.jpg
+-rwxrwxrwx 1 root root      42008 Jun 24 14:32  448069485_992869769129701_3631306509744951317_n.jpg
+-rwxrwxrwx 1 root root    2756106 Dec 19  2023  47698.png
+-rwxrwxrwx 1 root root     297925 Dec 19  2023  508286.jpg
+-rwxrwxrwx 1 root root     954616 Dec 19  2023  606231.jpg
+-rwxrwxrwx 1 root root      65330 Sep 19 19:52  6240810fa536ae6d53119c8f77042b66.jpg
+-rwxrwxrwx 1 root root     693124 Dec 19  2023  703626.jpg
+-rwxrwxrwx 1 root root     886617 Dec 19  2023  752143.png
+-rwxrwxrwx 1 root root      58912 Sep  5 22:42  9C2440F9D38F769B768660FE715D36572776F681.torrent
+-rwxrwxrwx 1 root root 1047800821 Jul  9 23:07  @FBM_New.The.Gangster.The.Cop.The.Devil.2019.720p.BluRay.mkv
+-rwxrwxrwx 1 root root    1033553 Apr 19 13:47 'Ac Bill.pdf'
+-rwxrwxrwx 1 root root     109043 Mar 13  2024 'Acct Statement_XX3712_13032024 (1).pdf'
+-rwxrwxrwx 1 root root     153066 Jan 18  2024 'Acct Statement_XX3712_18012024 (1).pdf'
+-rwxrwxrwx 1 root root     140048 Jan 18  2024 'Acct Statement_XX3712_18012024.pdf'
+-rwxrwxrwx 1 root root    1541163 May 29 12:56 'Adobe Scan 29-May-2024.pdf'
+-rwxrwxrwx 1 root root    6312616 Apr 27 10:08  Alienware-Command-Center-Application_VG5NK_WIN_5.6.1.0_A00.exe
+-rwxrwxrwx 1 root root      54430 May 30 14:48 'Aurita Bikes BoM Breakdown.pdf'
+-rwxrwxrwx 1 root root    1257867 Jul 16 13:30 'Aurita Bikes Manual_01 (1) (2) (1).pdf'
+-rwxrwxrwx 1 root root    1257867 Mar  4  2024 'Aurita Bikes Manual_01 (1) (2).pdf'
+-rwxrwxrwx 1 root root    1257867 Jan  3  2024 'Aurita Bikes Manual_01 (1).pdf'
+-rwxrwxrwx 1 root root     100062 Dec 23  2023 'Aurita One Pager Agreement.pdf'
+-rwxrwxrwx 1 root root  537247621 Dec  5  2023 'Aurita VIdeo.mp4'
+-rwxrwxrwx 1 root root     365770 Sep 26 21:42 'BPD_CDR_CONV (1).cdr'
+-rwxrwxrwx 1 root root     112604 Feb 12  2024  Before.We.Go.English-WWW.MY-SUBS.CO.srt
+-rwxrwxrwx 1 root root    1602412 May 29 12:56 'Bike1 (1) (1).pdf'
+-rwxrwxrwx 1 root root    1206198 Dec 28  2023 'Black Modern Quote Instagram Post.png'
+-rwxrwxrwx 1 root root     561178 Apr 17 12:02 'Brown Modern Restaurant Food Menu Template (Instagram Story).png'
+-rwxrwxrwx 1 root root    1120874 Jun 25 23:10  CCF07292012_00000.jpg
+-rwxrwxrwx 1 root root     804506 Jun 25 23:10  CCF07292012_00001.jpg
+-rwxrwxrwx 1 root root     124382 Apr 15 19:50 'CH.Lakshmi - Yatra Registration Letter.pdf'
+-rwxrwxrwx 1 root root     914129 May 20 17:07 'CV - M.BHARADWAJ.pdf'
+-rwxrwxrwx 1 root root   29670368 Mar  8  2024 'Call recording 9902220615_240229_184719.m4a'
+-rwxrwxrwx 1 root root     100363 May 27 23:35 'Charlie [2015] Malayalam DVDRip x264 700MB ESubs.srt'
+-rwxrwxrwx 1 root root  890546767 May 27 22:29  Charlie_2015_Malayalam_1080p_BluRay_HEVC_x265_AAC_128KBPS_850MB.mkv
+-rwxrwxrwx 1 root root     695804 Jun 25 08:59  Cool-Black-And-White-Wallpapers-Resolution-1920x1080-Desktop-Backgrounds-134.jpg
+-rwxrwxrwx 1 root root      76953 Dec 19  2023 'Cycle servicing SOP.docx.pdf'
+-rwxrwxrwx 1 root root      46225 Mar 15  2024  DC-00091.pdf
+-rwxrwxrwx 1 root root      48407 Apr 11 10:58 'DC-00093 (1).pdf'
+-rwxrwxrwx 1 root root      48239 May  2 11:37 'DC-00093 (2).pdf'
+-rwxrwxrwx 1 root root      48096 Apr 11 10:24  DC-00093.pdf
+-rwxrwxrwx 1 root root      51768 May 25 15:42  DC-00099.pdf
+-rwxrwxrwx 1 root root      54371 Jul 12 10:30 'DC-00119 (1).pdf'
+-rwxrwxrwx 1 root root      52659 Jul 12 10:00  DC-00119.pdf
+-rwxrwxrwx 1 root root      49240 Jul 29 12:16  DC-00123.pdf
+-rwxrwxrwx 1 root root      49608 Jul 29 12:28 'DC-00124 (1).pdf'
+-rwxrwxrwx 1 root root      49608 Jul 29 12:24  DC-00124.pdf
+-rwxrwxrwx 1 root root      50280 Jul 29 12:29  DC-00125.pdf
+-rwxrwxrwx 1 root root      49139 Aug 21 14:53  DC-00130.pdf
+-rwxrwxrwx 1 root root      49503 Aug 22 12:29  DC-00131.pdf
+-rwxrwxrwx 1 root root      49986 Sep 21 19:47  DC-00140.pdf
+-rwxrwxrwx 1 root root      50034 Sep 30 13:39  DC-00141.pdf
+-rwxrwxrwx 1 root root    1661468 May  6 01:07  DOC-20240506-WA0000_
+-rwxrwxrwx 1 root root    1661468 May  6 01:08 'DOC-20240506-WA0000_ (1)'
+drwxrwxrwx 1 root root        512 Dec  5  2023  DaVinci_Resolve_18.6.4_Windows
+-rwxrwxrwx 1 root root   44130360 Nov 10  2023  Dell_G15_5520_5521_G16_7620_1.19.1.exe
+-rwxrwxrwx 1 root root   44167152 Apr 27 10:01  Dell_G15_5520_5521_G16_7620_1.23.0.exe
+-rwxrwxrwx 1 root root       1678 Sep 27 18:51  Dev.pem
+-r--r--r-- 1 root root       1674 Sep 21 13:38  Devop.pem
+-r-xr-xr-x 1 root root       1674 Sep 28 18:03  Devops.pem
+-rwxrwxrwx 1 root root   96184608 Nov 16  2023  DiscordSetup.exe
+-rwxrwxrwx 1 root root      24846 May 27 11:06 "Do's  Don'ts.docx"
+-rwxrwxrwx 1 root root     931579 Jun 27 12:18 'DocScanner Jun 25, 2024 10-35 AM.pdf'
+-rwxrwxrwx 1 root root     898714 Jun 27 12:18 'DocScanner Jun 25, 2024 10-38 AM.pdf'
+-rwxrwxrwx 1 root root     865820 Jun 27 12:18 'DocScanner Jun 25, 2024 10-40 AM.pdf'
+-rwxrwxrwx 1 root root     973822 Nov 22  2023  EAadhaar_2052317340218620210809163606_2211202395010.pdf
+-rwxrwxrwx 1 root root     973821 Nov 22  2023  EAadhaar_2052317340218620210809163606_2211202395329.pdf
+-rwxrwxrwx 1 root root     548864 Aug  2 13:50  ELEPEDOL_SAMPLE_750Watt.xls
+-rwxrwxrwx 1 root root  179454832 Apr 17 23:41  EP.1.v0.1703642564.480p.mp4
+-rwxrwxrwx 1 root root  401884828 Apr 17 23:50  EP.1.v2.1692758110.720p.mp4
+-rwxrwxrwx 1 root root  446558570 Apr 17 23:57  EP.1.v4.1702865721.720p.mp4
+-rwxrwxrwx 1 root root      45817 Apr 22 10:40 'EST-000132 (1).pdf'
+-rwxrwxrwx 1 root root      45817 Mar 20  2024  EST-000132.pdf
+-rwxrwxrwx 1 root root      43583 Feb 21  2024 'EST-000134 (1).pdf'
+-rwxrwxrwx 1 root root      43583 Feb 21  2024 'EST-000134 (2).pdf'
+-rwxrwxrwx 1 root root      43583 Feb 16  2024  EST-000134.pdf
+-rwxrwxrwx 1 root root      41393 Feb 26  2024  EST-000148.pdf
+-rwxrwxrwx 1 root root      42541 Mar  8  2024  EST-000153.pdf
+-rwxrwxrwx 1 root root      41245 Mar 11  2024 'EST-000155 (1).pdf'
+-rwxrwxrwx 1 root root      41317 Mar 11  2024  EST-000155.pdf
+-rwxrwxrwx 1 root root      42192 Mar 11  2024 'EST-000156 (1).pdf'
+-rwxrwxrwx 1 root root      42192 Mar 11  2024 'EST-000156 (2).pdf'
+-rwxrwxrwx 1 root root      42192 Mar 11  2024  EST-000156.pdf
+-rwxrwxrwx 1 root root      43388 Apr  1  2024 'EST-000160 (1).pdf'
+-rwxrwxrwx 1 root root      44209 Apr  1  2024 'EST-000160 (2).pdf'
+-rwxrwxrwx 1 root root      43388 Apr  1  2024  EST-000160.pdf
+-rwxrwxrwx 1 root root      41081 Apr  8 11:10  EST-000162.pdf
+-rwxrwxrwx 1 root root      44290 Apr 29 10:56 'EST-000167 (1).pdf'
+-rwxrwxrwx 1 root root      43679 Apr 27 09:40  EST-000167.pdf
+-rwxrwxrwx 1 root root      45304 May  2 19:34  EST-000168.pdf
+-rwxrwxrwx 1 root root      44097 May 10 16:32 'EST-000169 (1).pdf'
+-rwxrwxrwx 1 root root      44464 May 10 17:19 'EST-000169 (2).pdf'
+-rwxrwxrwx 1 root root      41902 May  9 12:21  EST-000169.pdf
+-rwxrwxrwx 1 root root      43775 May 30 14:50 'EST-000170 (1).pdf'
+-rwxrwxrwx 1 root root      43669 May 30 14:44  EST-000170.pdf
+-rwxrwxrwx 1 root root      41446 Jun  7 09:58 'EST-000172 (1).pdf'
+-rwxrwxrwx 1 root root      41791 Jun  6 11:30  EST-000172.pdf
+-rwxrwxrwx 1 root root      44541 Jun  7 11:00 'EST-000173 (1).pdf'
+-rwxrwxrwx 1 root root      44748 Jun  7 10:38  EST-000173.pdf
+-rwxrwxrwx 1 root root      43845 Jun 22 10:13 'EST-000177 (1).pdf'
+-rwxrwxrwx 1 root root      42475 Jun 25 11:12 'EST-000177 (2).pdf'
+-rwxrwxrwx 1 root root      45339 Jun 22 09:57  EST-000177.pdf
+-rwxrwxrwx 1 root root      42228 Jun 22 10:18  EST-000178.pdf
+-rwxrwxrwx 1 root root      42002 Jun 22 10:34  EST-000179.pdf
+-rwxrwxrwx 1 root root      42237 Jul  3 10:44 'EST-000180 (1).pdf'
+-rwxrwxrwx 1 root root      42237 Jul  3 12:55 'EST-000180 (2).pdf'
+-rwxrwxrwx 1 root root      42237 Jun 26 09:43  EST-000180.pdf
+-rwxrwxrwx 1 root root      44452 Jun 27 12:20 'EST-000181 (1).pdf'
+-rwxrwxrwx 1 root root      44448 Jun 27 12:18  EST-000181.pdf
+-rwxrwxrwx 1 root root      43176 Jun 29 15:50  EST-000183.pdf
+-rwxrwxrwx 1 root root      41734 Jul  4 13:32 'EST-000184 (1).pdf'
+-rwxrwxrwx 1 root root      41734 Jul  2 14:26  EST-000184.pdf
+-rwxrwxrwx 1 root root      47687 Jul 18 12:02 'EST-000185 (1).pdf'
+-rwxrwxrwx 1 root root      48052 Jul 25 11:28 'EST-000185 (2).pdf'
+-rwxrwxrwx 1 root root      48261 Jul 25 15:25 'EST-000185 (3).pdf'
+-rwxrwxrwx 1 root root      48672 Jul 17 10:16  EST-000185.pdf
+-rwxrwxrwx 1 root root      44185 Jul 25 15:28 'EST-000186 (1).pdf'
+-rwxrwxrwx 1 root root      44156 Jul 18 12:05  EST-000186.pdf
+-rwxrwxrwx 1 root root      42002 Jul 24 11:02  EST-000187.pdf
+-rwxrwxrwx 1 root root      43157 Jul 30 14:21 'EST-000188 (1).pdf'
+-rwxrwxrwx 1 root root      43157 Aug  7 11:41 'EST-000188 (2).pdf'
+-rwxrwxrwx 1 root root      43157 Aug  7 11:41 'EST-000188 (3).pdf'
+-rwxrwxrwx 1 root root      43157 Jul 27 16:19  EST-000188.pdf
+-rwxrwxrwx 1 root root      43267 Jul 27 16:10  EST-000189.pdf
+-rwxrwxrwx 1 root root      42742 Aug  2 14:04 'EST-000190 (1) (1).pdf'
+-rwxrwxrwx 1 root root      42742 Aug  2 14:04 'EST-000190 (1) (2).pdf'
+-rwxrwxrwx 1 root root      42742 Aug  2 14:04 'EST-000190 (1) (3).pdf'
+-rwxrwxrwx 1 root root      42742 Aug  2 12:55 'EST-000190 (1).pdf'
+-rwxrwxrwx 1 root root      44196 Jul 29 10:42  EST-000190.pdf
+-rwxrwxrwx 1 root root      42887 Jul 29 12:07  EST-000191.pdf
+-rwxrwxrwx 1 root root      42427 Jul 30 14:17 'EST-000192 (1).pdf'
+-rwxrwxrwx 1 root root      42427 Jul 30 14:16  EST-000192.pdf
+-rwxrwxrwx 1 root root      42742 Aug  2 16:42  EST-000193.pdf
+-rwxrwxrwx 1 root root      41980 Aug 16 13:00  EST-000194.pdf
+-rwxrwxrwx 1 root root      41552 Aug 23 11:15  EST-000195.pdf
+-rwxrwxrwx 1 root root      42619 Sep 25 14:42  EST-000206.pdf
+-rwxrwxrwx 1 root root  276520528 Jul 15 23:55 'Exhuma.(NKIRI.COM).2024.WEB-DL.DOWNLOADED.FROM.NKIRI.COM.mkv'
+-rwxrwxrwx 1 root root     996934 Dec 29  2023 'Famous Quotes Instagram Post in White Peach and Blue Photocentric Style.png'
+-rwxrwxrwx 1 root root       1508 Apr  6 18:37  GJ2424TS005626_GL2421_30-Jun-2023.xls
+-rwxrwxrwx 1 root root       1243 Apr  6 18:37  GJ2424TS008376_GL2421_31-Jul-202302.xls
+-rwxrwxrwx 1 root root      41143 Mar  8  2024 'GJ2424TS020617_GL2421_31-Jan-2024 (1).pdf'
+-rwxrwxrwx 1 root root        764 Feb 21  2024  GJ2424TS020617_GL2421_31-Jan-202402.xls
+-rwxrwxrwx 1 root root       1361 Mar  8  2024  GJ2424TS022868_GL2421_29-Feb-202402.xls
+-rwxrwxrwx 1 root root  131933552 Nov  6  2023  GeForce_Experience_v3.27.0.120.exe
+-rwxrwxrwx 1 root root  507894059 May 27 12:34 'Gear Set-20240527T065943Z-001.zip'
+-rwxrwxrwx 1 root root   68131584 Jul  9 10:43  Git-2.45.2-64-bit.exe
+-rwxrwxrwx 1 root root   68406896 Sep 29 17:35  Git-2.46.2-64-bit.exe
+-rwxrwxrwx 1 root root    1636401 Jan 16  2024 'Gray Modern Aesthetic Daily Quotes Instagram Post.png'
+-rwxrwxrwx 1 root root    1607822 Jul 11 11:24  Handout____Introduction_to_AWS_Services__Compute,_Storage,_Databases.pdf-rwxrwxrwx 1 root root     349424 Mar  7  2024 'Hari krishna powder.pdf'
+-rwxrwxrwx 1 root root      20417 Dec 30  2023 'Hey Lola.mp3'
+-rwxrwxrwx 1 root root     523743 Aug  5 16:19 'How to Read a Book'
+-rwxrwxrwx 1 root root      75804 Jun 22 09:53  IN-KP24-25006.pdf
+-rwxrwxrwx 1 root root      72185 Aug  7 11:39  IN-KP24-25008.pdf
+-rwxrwxrwx 1 root root      72914 Aug  7 11:42  IN-KP24-25009.pdf
+-rwxrwxrwx 1 root root      72611 Sep 25 15:24  IN-KP24-25022.pdf
+-rwxrwxrwx 1 root root      71423 Jun 22 10:07  INV23-24000044.pdf
+-rwxrwxrwx 1 root root      73233 Apr  6 18:42  INV23-24000060.pdf
+-rwxrwxrwx 1 root root      73874 Jul 27 10:00  INV23-24000072.pdf
+-rwxrwxrwx 1 root root      72060 Feb 24  2024 'INV23-24000219 (1).pdf'
+-rwxrwxrwx 1 root root      72060 Feb 24  2024 'INV23-24000219 (2).pdf'
+-rwxrwxrwx 1 root root      72060 Feb 24  2024 'INV23-24000219 (3).pdf'
+-rwxrwxrwx 1 root root      72060 Feb 24  2024 'INV23-24000219 (4).pdf'
+-rwxrwxrwx 1 root root      72060 Feb 24  2024  INV23-24000219.pdf
+-rwxrwxrwx 1 root root      73005 Mar 13  2024  INV23-24000221.pdf
+-rwxrwxrwx 1 root root      73093 Apr  6 18:01  INV23-24000223.pdf
+-rwxrwxrwx 1 root root      70686 Apr  6 18:01  INV23-24000224.pdf
+-rwxrwxrwx 1 root root      72696 Apr  6 18:01  INV23-24000225.pdf
+-rwxrwxrwx 1 root root      72954 Apr  6 18:01  INV23-24000226.pdf
+-rwxrwxrwx 1 root root      73618 Apr  6 18:01  INV23-24000227.pdf
+-rwxrwxrwx 1 root root      72712 Apr  6 18:00 'INV23-24000228 (1).pdf'
+-rwxrwxrwx 1 root root      72303 Mar 12  2024  INV23-24000228.pdf
+-rwxrwxrwx 1 root root      72744 Apr  6 18:00 'INV23-24000229 (1).pdf'
+-rwxrwxrwx 1 root root      72471 Mar 12  2024  INV23-24000229.pdf
+-rwxrwxrwx 1 root root      72602 Apr  6 18:00 'INV23-24000230 (1).pdf'
+-rwxrwxrwx 1 root root      72605 Mar 12  2024  INV23-24000230.pdf
+-rwxrwxrwx 1 root root      72609 Apr  6 18:00 'INV23-24000231 (1).pdf'
+-rwxrwxrwx 1 root root      73064 Mar 12  2024  INV23-24000231.pdf
+-rwxrwxrwx 1 root root      72976 Apr  6 18:00 'INV23-24000232 (1).pdf'
+-rwxrwxrwx 1 root root      72999 Mar 12  2024  INV23-24000232.pdf
+-rwxrwxrwx 1 root root      71865 Apr  6 18:00 'INV23-24000233 (1).pdf'
+-rwxrwxrwx 1 root root      72040 Mar 12  2024  INV23-24000233.pdf
+-rwxrwxrwx 1 root root      71842 Apr  6 18:00 'INV23-24000234 (1).pdf'
+-rwxrwxrwx 1 root root      71811 Mar 12  2024  INV23-24000234.pdf
+-rwxrwxrwx 1 root root      72470 Apr  6 18:00 'INV23-24000235 (1).pdf'
+-rwxrwxrwx 1 root root      72476 Mar 12  2024  INV23-24000235.pdf
+-rwxrwxrwx 1 root root      72514 Apr  6 18:00 'INV23-24000236 (1).pdf'
+-rwxrwxrwx 1 root root      72281 Mar 12  2024  INV23-24000236.pdf
+-rwxrwxrwx 1 root root      71672 Apr  6 17:59 'INV23-24000237 (1).pdf'
+-rwxrwxrwx 1 root root      71566 Mar 12  2024  INV23-24000237.pdf
+-rwxrwxrwx 1 root root      72517 Apr  6 17:59 'INV23-24000238 (1).pdf'
+-rwxrwxrwx 1 root root      72089 Mar 12  2024  INV23-24000238.pdf
+-rwxrwxrwx 1 root root      72534 Apr  6 17:59 'INV23-24000239 (1).pdf'
+-rwxrwxrwx 1 root root      72429 Mar 12  2024  INV23-24000239.pdf
+-rwxrwxrwx 1 root root      72655 Apr  6 17:59 'INV23-24000240 (1).pdf'
+-rwxrwxrwx 1 root root      73007 Mar 13  2024  INV23-24000240.pdf
+-rwxrwxrwx 1 root root      72452 Apr  6 17:59  INV23-24000241.pdf
+-rwxrwxrwx 1 root root      72154 Apr  6 17:59 'INV23-24000242 (1).pdf'
+-rwxrwxrwx 1 root root      71884 Mar 11  2024  INV23-24000242.pdf
+-rwxrwxrwx 1 root root      72124 Apr  6 17:59  INV23-24000243.pdf
+-rwxrwxrwx 1 root root      78747 Apr  6 17:59 'INV23-24000245 (1).pdf'
+-rwxrwxrwx 1 root root      78686 Mar 16  2024  INV23-24000245.pdf
+-rwxrwxrwx 1 root root      72651 May 15 11:10 'INV24-25000002 (1).pdf'
+-rwxrwxrwx 1 root root      72596 May  8 11:41  INV24-25000002.pdf
+-rwxrwxrwx 1 root root      72413 May 15 11:10  INV24-25000003.pdf
+-rwxrwxrwx 1 root root      71985 May 15 11:09  INV24-25000004.pdf
+-rwxrwxrwx 1 root root      72109 May 15 11:09  INV24-25000005.pdf
+-rwxrwxrwx 1 root root      74064 May 31 10:38 'INV24-25000008 (1).pdf'
+-rwxrwxrwx 1 root root      73915 May 31 10:25  INV24-25000008.pdf
+-rwxrwxrwx 1 root root     494707 Nov 16  2023  Image_Editor.png
+-rwxrwxrwx 1 root root   31456684 Apr  9 19:23 "In the city's heart, where dreams take flight, I stand alone, bathed in the city's light. Her words, like whispers in the breeze, Can't possible, they echo with ease..mp4"
+-rwxrwxrwx 1 root root   18878368 Apr 27 10:09  Intel-Chipset-Device-Software_RVRV0_WIN_10.1.19468.8385_A23_06.EXE
+-rwxrwxrwx 1 root root   10165432 Nov 10  2023  Intel-HID-Event-Filter-Driver_YR94R_WIN_2.2.1.386_A17_04.EXE
+-rwxrwxrwx 1 root root   14761888 Apr 27 10:09 'Intel-Management-Engine-Interface-Driver_M1G5C_WIN64_2313.4.16.0_A03 (1).EXE'
+-rwxrwxrwx 1 root root   14761888 Nov 10  2023  Intel-Management-Engine-Interface-Driver_M1G5C_WIN64_2313.4.16.0_A03.EXE-rwxrwxrwx 1 root root  731655976 Apr 27 10:10  Intel-UHD-Iris-Xe-Graphics-Driver_H0250_WIN64_31.0.101.4575_A05.EXE
+-rwxrwxrwx 1 root root      52796 Feb 16  2024  Invoice_2827740546600.pdf
+-rwxrwxrwx 1 root root      52598 Feb 16  2024  Invoice_2827740597641.pdf
+-rwxrwxrwx 1 root root      52920 Feb 16  2024  Invoice_2827740653346.pdf
+-rwxrwxrwx 1 root root      53177 Feb 20  2024  Invoice_2827740854880.pdf
+-rwxrwxrwx 1 root root      52565 Feb 20  2024  Invoice_2827740855473.pdf
+-rwxrwxrwx 1 root root      52589 Feb 21  2024  Invoice_2827740888104.pdf
+-rwxrwxrwx 1 root root      52429 Feb 21  2024  Invoice_28277409029444.pdf
+-rwxrwxrwx 1 root root      52790 Feb 24  2024  Invoice_2827741045431.pdf
+-rwxrwxrwx 1 root root      52082 Feb 24  2024  Invoice_2827741051263.pdf
+-rwxrwxrwx 1 root root      52497 Feb 27  2024  Invoice_2827741178243.pdf
+-rwxrwxrwx 1 root root      52711 Feb 29  2024  Invoice_2827741301222.pdf
+-rwxrwxrwx 1 root root      52306 Mar  4  2024  Invoice_2827741465814.pdf
+-rwxrwxrwx 1 root root      52855 Mar  4  2024  Invoice_2827741468485.pdf
+-rwxrwxrwx 1 root root      52503 Mar  4  2024  Invoice_2827741473396.pdf
+-rwxrwxrwx 1 root root      52764 Mar  9  2024  Invoice_28277417200066.pdf
+-rwxrwxrwx 1 root root      53141 Mar  9  2024  Invoice_2827741729574.pdf
+-rwxrwxrwx 1 root root      52696 Mar 11  2024  Invoice_28277418067955.pdf
+-rwxrwxrwx 1 root root      53427 Mar 19  2024  Invoice_2827742206834.pdf
+-rwxrwxrwx 1 root root      52473 Mar 21  2024  Invoice_2827742342800.pdf
+-rwxrwxrwx 1 root root      52671 Mar 21  2024  Invoice_28277423433122.pdf
+-rwxrwxrwx 1 root root      52700 Mar 26  2024  Invoice_28277425534266.pdf
+-rwxrwxrwx 1 root root      52885 Mar 23  2024  Invoice_T17111H7N0U61W5944.pdf
+-rwxrwxrwx 1 root root      52112 Apr  6 17:49  Invoice_T171195XT2H85882Z6.pdf
+-rwxrwxrwx 1 root root      62339 Jun  7 09:24 'Jaganadha operations.docx'
+-rwxrwxrwx 1 root root      62233 Jun  7 09:48  Jaganadha.docx
+-rwxrwxrwx 1 root root     121485 Apr 22 12:19  Jaganadha.pdf
+-rwxrwxrwx 1 root root      23831 Mar  8  2024 'Jalaram lithium.PDF'
+-rwxrwxrwx 1 root root      23747 Mar  8  2024  Jalaram.PDF
+-rwxrwxrwx 1 root root     115169 Mar  7  2024 'KBN corporation .pdf'
+-rwxrwxrwx 1 root root     322331 Feb 21  2024 'KNP-AMD 23016100072141.pdf'
+-rwxrwxrwx 1 root root      89395 Mar  8  2024 'LOG ON LOGISTICS.pdf'
+-rwxrwxrwx 1 root root     287231 Dec  5  2023 'Letter of Appointment Draft.docx'
+-rwxrwxrwx 1 root root       6382 Jun 22 14:32  Linux.md
+-rwxrwxrwx 1 root root      89411 Mar  8  2024 'Log on Logistics (3).pdf'
+-rwxrwxrwx 1 root root      89429 Mar  8  2024 'Log on logistics (2).pdf'
+-rwxrwxrwx 1 root root      37553 Dec 30  2023  Lola.mp3
+-rwxrwxrwx 1 root root      75660 Mar 16  2024 'MEW-March-E-Way Bill System.pdf'
+-rwxrwxrwx 1 root root   12912580 Nov  9  2023  MH_01425.png
+-rwxrwxrwx 1 root root    9714833 Nov  9  2023  MH_01481.png
+-rwxrwxrwx 1 root root        393 Apr  6 18:37  MP2324TS006944_GL2421_31-Jul-202302.xls
+-rwxrwxrwx 1 root root      15651 Jan 20  2024 'Midnight Magic.docx'
+drwxrwxrwx 1 root root        512 Jul 11 18:33  MobaXterm_Installer_v24.2
+-rwxrwxrwx 1 root root   42121633 Jul 11 18:35 'MobaXterm_Installer_v24.2 (1).zip'
+-rwxrwxrwx 1 root root   42121633 Jul 11 18:33  MobaXterm_Installer_v24.2.zip
+-rwxrwxrwx 1 root root     162118 Dec 27  2023 'Motivational Quotes Instagram Post in Pink Square Border Style.png'
+-rwxrwxrwx 1 root root      14797 Jun  2 18:47 'NR7603110170394775 Invoice.pdf'
+-rwxrwxrwx 1 root root     108799 Sep  5 22:39 'Natsamrat (2016) [WEBRip] [1080p] [YTS.AM].torrent'
+-rwxrwxrwx 1 root root 1541572122 Sep 29 20:40 'Natsamrat 2016 WebRip 720p Marathi AAC 5.1 x264 ES.mkv'
+-rwxrwxrwx 1 root root    1953165 Apr 20 10:38 'New Doc 04-19-2024 18.55.pdf'
+-rwxrwxrwx 1 root root    1959516 May 31 10:21 'New Doc 04-19-2024 18.56 (1).pdf'
+-rwxrwxrwx 1 root root    1959516 Apr 20 10:38 'New Doc 04-19-2024 18.56.pdf'
+-rwxrwxrwx 1 root root    1866575 Apr 20 10:38 'New Doc 04-19-2024 18.58.pdf'
+-rwxrwxrwx 1 root root     739875 Mar 12  2024 'New Doc 2024-03-12 11.53.40.pdf'
+-rwxrwxrwx 1 root root  276163263 Sep 27 14:15 'New Project - Made with Clipchamp.mp4'
+-rwxrwxrwx 1 root root     132526 Dec 19  2023  OIG.jpg
+-rwxrwxrwx 1 root root      12092 Aug  2 14:05  OIP.jpeg
+-rwxrwxrwx 1 root root      80580 Mar 14  2024 'PO - 4500017445 ( Elon Motors Engineering Pvt. Ltd.PDF'
+-rwxrwxrwx 1 root root      35245 Feb 21  2024  PackageSlip_T1708CJ4944PU64973.pdf
+-rwxrwxrwx 1 root root      36120 Feb 24  2024  PackageSlip_T1708J765GCP900382.pdf
+-rwxrwxrwx 1 root root      36221 Feb 21  2024  PackageSlip_T1708K51G07975A8F4.pdf
+-rwxrwxrwx 1 root root      36254 Mar  4  2024  PackageSlip_T1709534ABO7721W92.pdf
+-rwxrwxrwx 1 root root      36503 Feb 16  2024  PackageSlip_T170LJ80R627W50935.pdf
+-rwxrwxrwx 1 root root      35363 Feb 20  2024  PackageSlip_T170Q8N43C0V177267.pdf
+-rwxrwxrwx 1 root root      36341 Feb 24  2024  PackageSlip_T170U87596Y2819QW2.pdf
+-rwxrwxrwx 1 root root      35408 Mar 23  2024  PackageSlip_T17111H7N0U61W5944.pdf
+-rwxrwxrwx 1 root root      36007 Mar 26  2024  PackageSlip_T17114565ETAH98957.pdf
+-rwxrwxrwx 1 root root      34917 Apr  1  2024  PackageSlip_T171195XT2H85882Z6.pdf
+-rwxrwxrwx 1 root root      36920 Mar 11  2024  PackageSlip_T171TD01R35G202407.pdf
+-rwxrwxrwx 1 root root      36600 Mar  4  2024  PackageSlip_T17J095EM310787W92.pdf
+-rwxrwxrwx 1 root root      35877 Feb 29  2024  PackageSlip_T17O0V9205K894I893.pdf
+-rwxrwxrwx 1 root root      35781 Mar  4  2024  PackageSlip_T17Y0952I8718BE354.pdf
+-rwxrwxrwx 1 root root      36643 Mar 21  2024  PackageSlip_T1OF7110AK23225582.pdf
+-rwxrwxrwx 1 root root      35577 Mar  9  2024  PackageSlip_T1S7B09958N183L543.pdf
+-rwxrwxrwx 1 root root      36496 Mar 19  2024  PackageSlip_T1WQ71082J238F3843.pdf
+-rwxrwxrwx 1 root root      35549 Mar 21  2024 'PackageSlip_TC1711D023S7103V65 (1).pdf'
+-rwxrwxrwx 1 root root      35549 Mar 21  2024  PackageSlip_TC1711D023S7103V65.pdf
+-rwxrwxrwx 1 root root      36512 Feb 20  2024  PackageSlip_TC17I08430909F9A72.pdf
+-rwxrwxrwx 1 root root      35716 Feb 27  2024  PackageSlip_TI1709015A1W3160O2.pdf
+-rwxrwxrwx 1 root root      36586 Mar  9  2024  PackageSlip_TV17P09968S04A3589.pdf
+-rwxrwxrwx 1 root root     149244 May  9 11:26  Payslip_EM0017_Apr_2024_4936891793864351813_1715234185959.pdf
+-rwxrwxrwx 1 root root     149845 Apr 20 15:54  Payslip_EM0017_Feb_2024_3339405166757695328_1713608662245.pdf
+-rwxrwxrwx 1 root root     149846 Apr 20 15:53  Payslip_EM0017_Feb_2024_5070821092577543546_1713608563773.pdf
+-rwxrwxrwx 1 root root     149498 Apr 20 15:54  Payslip_EM0017_Jan_2024_644651007364315457_1713608656071.pdf
+-rwxrwxrwx 1 root root     178098 Apr 20 10:43  Payslip_EM0017_Mar_2024_1556457908490471654_1713590020746.pdf
+-rwxrwxrwx 1 root root     149231 Apr 20 10:55  Payslip_EM0017_Mar_2024_2211084357769688561_1713590369039.pdf
+-rwxrwxrwx 1 root root     192256 Apr 20 10:41  Payslip_EM0017_Mar_2024_2434391236769141011_1713589880300.pdf
+-rwxrwxrwx 1 root root     178098 Apr 20 10:55  Payslip_EM0017_Mar_2024_4831700106272855783_1713590023190.pdf
+-rwxrwxrwx 1 root root      78165 Apr 20 10:32  Payslip_EM0017_Mar_2024_8178123711484931438_1713589331453.pdf
+-rwxrwxrwx 1 root root     149228 Apr 20 10:55  Payslip_EM0017_Mar_2024_8654456030158122694_1713590382907.pdf
+-rwxrwxrwx 1 root root     148915 May 17 12:20  Payslip_EM0018_Dec_2023_8796564745902112200_1715928606918.pdf
+-rwxrwxrwx 1 root root     149648 May 17 12:21  Payslip_EM0018_Feb_2024_2742406155236172785_1715928671887.pdf
+-rwxrwxrwx 1 root root     149432 May 17 12:22  Payslip_EM0018_Jan_2024_3592374173472652968_1715928761468.pdf
+-rwxrwxrwx 1 root root     149023 May 17 12:21  Payslip_EM0018_Mar_2024_2883117111443386373_1715928689707.pdf
+-rwxrwxrwx 1 root root     149152 Jul  9 15:34  Payslip_EM002_Jul_2024_757090436291864388_1720519494431.pdf
+-rwxrwxrwx 1 root root     149359 Jul  9 15:34  Payslip_EM002_Jun_2024_1675129224162723235_1720519476513.pdf
+-rwxrwxrwx 1 root root     148960 Jul  9 15:27  Payslip_EM002_May_2024_5044417483500400337_1720519025703.pdf
+-rwxrwxrwx 1 root root    7838231 Feb  5  2024 'Pehle-Bhi-Main_320(PaglaSongs) [music].mp3'
+-rwxrwxrwx 1 root root   10598335 Feb  5  2024 'Pehle-Bhi-Main_320(PaglaSongs).mp3'
+drwxrwxrwx 1 root root        512 Feb 22  2024  Phone
+-rwxrwxrwx 1 root root      51534 Mar  7  2024 'Prince Marketing.pdf'
+-rwxrwxrwx 1 root root   55085499 Mar 17  2024  QuickShare_2403171146.zip
+-rwxrwxrwx 1 root root  388755923 May 28 14:41  QuickShare_2405281436.zip
+-rwxrwxrwx 1 root root     126953 Jul 27 09:58 'Raju Bill copy.pdf'
+-rwxrwxrwx 1 root root  109372640 Nov 22  2023  Rave-x64-Setup-1.11.6.exe
+-rwxrwxrwx 1 root root    1661468 May  6 01:10 'Referencing Questionnaire (1).pdf'
+-rwxrwxrwx 1 root root    1661468 May  6 01:09 'Referencing Questionnaire.pdf'
+-rwxrwxrwx 1 root root  115641060 Sep 28 18:19  S12_Sep21st.mp4
+-rwxrwxrwx 1 root root  143479441 Oct  3 09:47  S19_Oct1st.mp4
+-rwxrwxrwx 1 root root  117264567 Oct  3 09:47  S20_ocrt2nd.mp4
+-rwxrwxrwx 1 root root      13479 Mar 28  2024  SMPL-11.CSV
+-rwxrwxrwx 1 root root      10866 Mar 28  2024  SMPL-12.CSV
+-rwxrwxrwx 1 root root      10058 Mar 28  2024  SMPL-13.CSV
+-rwxrwxrwx 1 root root      10943 Mar 28  2024 'SMPL-14 (1).CSV'
+-rwxrwxrwx 1 root root      10943 Mar 28  2024  SMPL-14.CSV
+-rwxrwxrwx 1 root root     660222 May 27 11:01 'SOP Format (1).v2.2.docx'
+-rwxrwxrwx 1 root root      10484 Aug 28 19:26  Screenshot_28-8-2024_192649_.jpeg
+-rwxrwxrwx 1 root root     434090 Mar  7  2024 'Shreeji enterpr.pdf'
+-rwxrwxrwx 1 root root     271818 Mar  7  2024 'Shyam industry.pdf'
+-rwxrwxrwx 1 root root  534534719 May 22 09:56  Siddharth-Roy-Telugu-tch5k-2024.mp4
+-rwxrwxrwx 1 root root      41769 Nov 10  2023 'Simple personal budget.xlsx'
+-rwxrwxrwx 1 root root    8051687 Apr  9 19:05  Snapinsta.app_video_24471CE3CE26B56472E25074A2BB6DA3_video_dashinit.mp4
+-rwxrwxrwx 1 root root  997955404 Feb 11  2024  Something.Borrowed.2011.720p.BluRay.x264.950MB-Pahe.in.mkv.mkv
+-rwxrwxrwx 1 root root  707471992 Apr 17 23:13  Soulmate.2023.mkv
+-rwxrwxrwx 1 root root      54172 Nov 10  2023 'Spreadsheet Template_ Analyze Your Wealth.xlsx'
+-rwxrwxrwx 1 root root    2378560 May  9 15:19  SteamSetup.exe
+-rwxrwxrwx 1 root root    1237288 Mar  8  2024  SupportAssistLauncher.exe
+-rwxrwxrwx 1 root root  996847052 Feb  2  2024  Suzume.2022.720p.BluRay.x264.950MB-Pahe.in.mkv
+-rwxrwxrwx 1 root root     107787 Dec 19  2023  Teddy.jpg
+-rwxrwxrwx 1 root root    5019036 Jul 12 11:05 'Unconfirmed 104879.crdownload'
+-rwxrwxrwx 1 root root   37038069 Jul 11 18:22 'Unconfirmed 491067.crdownload'
+-rwxrwxrwx 1 root root      26751 Jan 28  2024 'Updated One Pager Agreement.docx'
+-rwxrwxrwx 1 root root    1757595 May 10 16:30  VID-20240429-WA0005.mp4
+-rwxrwxrwx 1 root root    8903857 Jul 24 10:33  VID-20240628-WA0007.mp4
+-rwxrwxrwx 1 root root  140486713 Apr 27 21:44  VID_20240427_194423.mp4
+-rwxrwxrwx 1 root root    5626031 Oct  1 13:47 'WhatsApp Chat with Maithli @ Snap.zip'
+-rwxrwxrwx 1 root root      78664 Feb 29  2024 'WhatsApp Image 2023-12-29 at 2.19.34 PM.jpeg'
+-rwxrwxrwx 1 root root      80059 Feb 29  2024 'WhatsApp Image 2023-12-29 at 2.19.45 PM.jpeg'
+-rwxrwxrwx 1 root root     129504 Mar  5  2024 'WhatsApp Image 2024-03-05 at 18.39.15_e2ba85db (1).pdf'
+-rwxrwxrwx 1 root root     129504 Mar  5  2024 'WhatsApp Image 2024-03-05 at 18.39.15_e2ba85db.pdf'
+-rwxrwxrwx 1 root root      69144 Mar 12  2024 'WhatsApp Image 2024-03-12 at 12.09.14 PM.jpeg'
+-rwxrwxrwx 1 root root      62789 Mar 12  2024 'WhatsApp Image 2024-03-12 at 12.09.15 PM.jpeg'
+-rwxrwxrwx 1 root root     140733 Mar 13  2024 'WhatsApp Image 2024-03-13 at 4.55.53 PM.jpeg'
+-rwxrwxrwx 1 root root     271527 Mar 13  2024 'WhatsApp Image 2024-03-13 at 4.58.17 PM.jpeg'
+-rwxrwxrwx 1 root root     132948 Mar 28  2024 'WhatsApp Image 2024-03-21 at 19.50.14_29e97779.jpg'
+-rwxrwxrwx 1 root root     211885 Apr  8 10:19 'WhatsApp Image 2024-04-06 at 12.29.10 PM.jpeg'
+-rwxrwxrwx 1 root root     171966 Apr  8 10:19 'WhatsApp Image 2024-04-06 at 12.29.22 PM.jpeg'
+-rwxrwxrwx 1 root root      71547 Apr  8 10:23 'WhatsApp Image 2024-04-08 at 10.22.59 AM (1).jpeg'
+-rwxrwxrwx 1 root root      76123 Apr  8 10:23 'WhatsApp Image 2024-04-08 at 10.22.59 AM.jpeg'
+-rwxrwxrwx 1 root root      39673 Apr  8 10:23 'WhatsApp Image 2024-04-08 at 10.23.00 AM.jpeg'
+-rwxrwxrwx 1 root root      79724 Apr 10 17:25 'WhatsApp Image 2024-04-10 at 5.17.30 PM.jpeg'
+-rwxrwxrwx 1 root root      83363 Apr 10 17:25 'WhatsApp Image 2024-04-10 at 5.17.36 PM.jpeg'
+-rwxrwxrwx 1 root root     143540 May 29 12:56 'WhatsApp Image 2024-05-29 at 12.40.01 PM.jpeg'
+-rwxrwxrwx 1 root root      58034 Jun  5 12:13 'WhatsApp Image 2024-06-04 at 4.59.35 PM.jpeg'
+-rwxrwxrwx 1 root root      57723 Jun  5 12:12 'WhatsApp Image 2024-06-04 at 4.59.36 PM (1).jpeg'
+-rwxrwxrwx 1 root root      32417 Jun  5 12:13 'WhatsApp Image 2024-06-04 at 4.59.36 PM.jpeg'
+-rwxrwxrwx 1 root root      85484 Jun  7 10:58 'WhatsApp Image 2024-06-06 at 11.39.11 AM.jpeg'
+-rwxrwxrwx 1 root root      87580 Jun  7 11:11 'WhatsApp Image 2024-06-07 at 11.09.03 AM.jpeg'
+-rwxrwxrwx 1 root root      85038 Jun  7 11:10 'WhatsApp Image 2024-06-07 at 11.09.09 AM.jpeg'
+-rwxrwxrwx 1 root root      89313 Jun  7 11:10 'WhatsApp Image 2024-06-07 at 11.09.31 AM.jpeg'
+-rwxrwxrwx 1 root root     172469 Jul  4 13:11 'WhatsApp Image 2024-06-12 at 12.26.00 PM.jpeg'
+-rwxrwxrwx 1 root root     166773 Jul  4 13:11 'WhatsApp Image 2024-06-14 at 12.15.44 PM.jpeg'
+-rwxrwxrwx 1 root root      57841 Jun 27 12:19 'WhatsApp Image 2024-06-24 at 10.56.59 AM.jpeg'
+-rwxrwxrwx 1 root root      78791 Jun 27 12:19 'WhatsApp Image 2024-06-24 at 10.57.00 AM.jpeg'
+-rwxrwxrwx 1 root root      89691 Jun 27 12:19 'WhatsApp Image 2024-06-24 at 10.57.01 AM.jpeg'
+-rwxrwxrwx 1 root root      73139 Jun 27 12:19 'WhatsApp Image 2024-06-24 at 11.06.03 AM.jpeg'
+-rwxrwxrwx 1 root root     121341 Jul 24 10:24 'WhatsApp Image 2024-07-02 at 4.21.53 PM (1).jpeg'
+-rwxrwxrwx 1 root root     121341 Jul  3 10:50 'WhatsApp Image 2024-07-02 at 4.21.53 PM.jpeg'
+-rwxrwxrwx 1 root root     162416 Jul 24 10:24 'WhatsApp Image 2024-07-02 at 6.29.22 PM (1).jpeg'
+-rwxrwxrwx 1 root root     162416 Jul  3 10:50 'WhatsApp Image 2024-07-02 at 6.29.22 PM.jpeg'
+-rwxrwxrwx 1 root root     145296 Jul  4 13:11 'WhatsApp Image 2024-07-04 at 12.56.39 PM (1).jpeg'
+-rwxrwxrwx 1 root root      91521 Jul  4 13:11 'WhatsApp Image 2024-07-04 at 12.56.39 PM (2).jpeg'
+-rwxrwxrwx 1 root root     133054 Jul  4 13:11 'WhatsApp Image 2024-07-04 at 12.56.39 PM.jpeg'
+-rwxrwxrwx 1 root root     108167 Jul  4 13:11 'WhatsApp Image 2024-07-04 at 12.56.40 PM.jpeg'
+-rwxrwxrwx 1 root root     107941 Jul 12 10:08 'WhatsApp Image 2024-07-11 at 12.33.33 PM.jpeg'
+-rwxrwxrwx 1 root root     240439 Jul 12 10:08 'WhatsApp Image 2024-07-11 at 12.34.02 PM (1).jpeg'
+-rwxrwxrwx 1 root root     201066 Jul 12 10:08 'WhatsApp Image 2024-07-11 at 12.34.02 PM.jpeg'
+-rwxrwxrwx 1 root root     231419 Jul 12 10:08 'WhatsApp Image 2024-07-11 at 12.34.04 PM.jpeg'
+-rwxrwxrwx 1 root root      85934 Jul 12 10:10 'WhatsApp Image 2024-07-11 at 12.49.24 PM.jpeg'
+-rwxrwxrwx 1 root root     200113 Jul 12 10:10 'WhatsApp Image 2024-07-11 at 12.49.46 PM (1).jpeg'
+-rwxrwxrwx 1 root root     152312 Jul 12 10:10 'WhatsApp Image 2024-07-11 at 12.49.46 PM (2).jpeg'
+-rwxrwxrwx 1 root root     140078 Jul 12 10:10 'WhatsApp Image 2024-07-11 at 12.49.46 PM.jpeg'
+-rwxrwxrwx 1 root root     251562 Jul 12 10:10 'WhatsApp Image 2024-07-11 at 12.49.47 PM.jpeg'
+-rwxrwxrwx 1 root root      93085 Jul 12 10:10 'WhatsApp Image 2024-07-11 at 12.49.48 PM.jpeg'
+-rwxrwxrwx 1 root root     177314 Jul 12 10:11 'WhatsApp Image 2024-07-11 at 12.49.50 PM.jpeg'
+-rwxrwxrwx 1 root root     279757 Jul 12 10:31 'WhatsApp Image 2024-07-11 at 12.49.51 PM.jpeg'
+-rwxrwxrwx 1 root root     104753 Jul 30 10:29 'WhatsApp Image 2024-07-29 at 6.30.22 PM.jpeg'
+-rwxrwxrwx 1 root root     858656 May  3 19:40 'WhatsApp Installer.exe'
+-rwxrwxrwx 1 root root    1574214 Jun 27 12:19 'WhatsApp Video 2024-06-24 at 10.56.59 AM.mp4'
+-rwxrwxrwx 1 root root    3917060 Jul  3 10:51 'WhatsApp Video 2024-06-28 at 11.34.10 AM.mp4'
+-rwxrwxrwx 1 root root    8903857 Jul  3 12:34 'WhatsApp Video 2024-07-03 at 10.52.40 AM.mp4'
+-rwxrwxrwx 1 root root    3917060 Jul 24 10:29 'WhatsApp Video 2024-07-24 at 10.29.31 AM.mp4'
+-rwxrwxrwx 1 root root     399728 Jul  9 13:24 'White And Red Professional Company Letterhead (1) (1).docx'
+-rwxrwxrwx 1 root root     127066 Jul  9 13:11 'White And Red Professional Company Letterhead (1).docx'
+-rwxrwxrwx 1 root root     133869 Jul  9 13:09 'White And Red Professional Company Letterhead (1).pdf'
+-rwxrwxrwx 1 root root     133884 Jul  9 13:07 'White And Red Professional Company Letterhead.pdf'
+-rwxrwxrwx 1 root root  683171422 May  9 11:10 'Who.Am.I.2014.BluRay.720p.650MB.Ganool @RickyChannel.mkv'
+-rwxrwxrwx 1 root root     124382 Apr 15 20:32 'Yatra Registration Letter - UTDB (1).pdf'
+-rwxrwxrwx 1 root root  845112292 Feb 10  2024 '[MCU] Napoleon (2023) [HQ HDRip - x264 - [Eng + Hin] - AAC -.mkv'
+-rwxrwxrwx 1 root root   10107636 Feb  5  2024 '[iSongs.info] 05 - Evarevaro.mp3'
+-rwxrwxrwx 1 root root     231981 Jan 28  2024  _77334445-d184-4b49-8a3d-04006d864a6e-removebg.png
+-rwxrwxrwx 1 root root      53578 Jan 26  2024  _77334445-d184-4b49-8a3d-04006d864a6e.jpg
+drwxrwxrwx 1 root root        512 Dec  5  2023  _Getintopc.com_Adobe_After_Effects_v23.2.1.3
+-rwxrwxrwx 1 root root     108034 Mar  7  2024 'all india (1).pdf'
+-rwxrwxrwx 1 root root     293995 Mar  7  2024 'all india.pdf'
+-rwxrwxrwx 1 root root     224973 May  7 14:11  asset-v1_IIMBx+OM101.1x+1T2024+type@asset+block@BM_IOM_W01_C01A_Template.pdf
+-rwxrwxrwx 1 root root    7735891 Feb  5  2024 'audio [music].mp3'
+-rwxrwxrwx 1 root root     283285 Apr 15 19:17 'certificate (1).pdf'
+-rwxrwxrwx 1 root root     283085 Apr 15 19:16  certificate.pdf
+-rwxrwxrwx 1 root root     244067 Jun 27 11:24  chintu.sri81_312.jpg
+-rwxrwxrwx 1 root root        282 Nov  3  2023  desktop.ini
+-rwxrwxrwx 1 root root      13525 Mar 15  2024 'download_(10)[1] (1).xlsx'
+-rwxrwxrwx 1 root root      22514 Mar 15  2024 'download_(10)[1].pdf'
+-rwxrwxrwx 1 root root     124764 Apr 20 10:40 'elon motors red & black (1).png'
+-rwxrwxrwx 1 root root     111248 Apr 20 10:42 'elon motors red & black (1)1.png'
+-rwxrwxrwx 1 root root     119549 Apr 20 10:41 'elon motors red & black (2).png'
+-rwxrwxrwx 1 root root      78314 Apr 20 10:48 'elon motors red & black (3) (1) (1).png'
+-rwxrwxrwx 1 root root      75679 Apr 20 10:48 'elon motors red & black (3) (1) (1)1.png'
+-rwxrwxrwx 1 root root     135167 Apr 20 10:47 'elon motors red & black (3) (1).png'
+-rwxrwxrwx 1 root root     338361 Apr 20 10:45 'elon motors red & black (3).png'
+-rwxrwxrwx 1 root root     338361 Jul  9 11:46 'elon motors red & black (4).png'
+-rwxrwxrwx 1 root root      28428 Jul  9 12:47 'elon motors red & black (4)G.png'
+-rwxrwxrwx 1 root root     338361 Jul  9 12:43 'elon motors red & black (5).png'
+-rwxrwxrwx 1 root root     182275 Jul  9 13:38 'elon motors red & black (5)f.png'
+-rwxrwxrwx 1 root root     338361 Apr 19 11:35 'elon motors red & black.png'
+-rwxrwxrwx 1 root root     496943 Jul  9 11:39  exp.pdf
+drwxrwxrwx 1 root root        512 Jan 27  2024  gilroy-extrabold
+-rwxrwxrwx 1 root root     591265 Jul  9 11:39  hike.pdf
+-rwxrwxrwx 1 root root     600398 Mar  5  2024  invoice_CRN1045899199.pdf
+-rwxrwxrwx 1 root root     602107 Mar  5  2024  invoice_CRN1225269520.pdf
+-rwxrwxrwx 1 root root     598206 Apr  6 12:15  invoice_CRN1251462306.pdf
+-rwxrwxrwx 1 root root     603896 Mar  5  2024  invoice_CRN1267714593.pdf
+-rwxrwxrwx 1 root root     596427 May  8 11:30  invoice_CRN1272992433.pdf
+-rwxrwxrwx 1 root root     676988 Mar  5  2024  invoice_CRN1274203884.pdf
+-rwxrwxrwx 1 root root     585683 Mar  5  2024  invoice_CRN1276540732.pdf
+-rwxrwxrwx 1 root root     603698 Mar  5  2024  invoice_CRN1361112667.pdf
+-rwxrwxrwx 1 root root     597905 Mar  5  2024  invoice_CRN1390529957.pdf
+-rwxrwxrwx 1 root root     598857 Mar  5  2024  invoice_CRN1410867776.pdf
+-rwxrwxrwx 1 root root     604218 Mar  5  2024  invoice_CRN1412935162.pdf
+-rwxrwxrwx 1 root root     590861 Mar  5  2024  invoice_CRN1501436391.pdf
+-rwxrwxrwx 1 root root     604040 Mar  5  2024  invoice_CRN1539219440.pdf
+-rwxrwxrwx 1 root root     597859 Mar  5  2024  invoice_CRN1548436408.pdf
+-rwxrwxrwx 1 root root     592679 Apr  6 12:15  invoice_CRN1595435950.pdf
+-rwxrwxrwx 1 root root     597119 Mar  5  2024  invoice_CRN1640296392.pdf
+-rwxrwxrwx 1 root root     597821 Mar  5  2024  invoice_CRN1645239352.pdf
+-rwxrwxrwx 1 root root     606088 Mar  5  2024  invoice_CRN1683096459.pdf
+-rwxrwxrwx 1 root root     597402 Mar  5  2024  invoice_CRN1835236820.pdf
+-rwxrwxrwx 1 root root     592068 Mar  5  2024  invoice_CRN1885717065.pdf
+-rwxrwxrwx 1 root root     604466 Mar  5  2024  invoice_CRN1968973736.pdf
+-rwxrwxrwx 1 root root     611235 Apr  6 12:15  invoice_CRN1999687415.pdf
+-rwxrwxrwx 1 root root     591645 Apr  6 12:15  invoice_CRN2002945599.pdf
+-rwxrwxrwx 1 root root     598118 Mar  5  2024  invoice_CRN2005967811.pdf
+-rwxrwxrwx 1 root root     589748 Mar  5  2024  invoice_CRN2008016040.pdf
+-rwxrwxrwx 1 root root     676687 Mar  5  2024  invoice_CRN2015790693.pdf
+-rwxrwxrwx 1 root root     611534 Mar  5  2024  invoice_CRN2068160529.pdf
+-rwxrwxrwx 1 root root     590976 Apr  6 12:14  invoice_CRN2130890750.pdf
+-rwxrwxrwx 1 root root     790565 Dec 19  2023  itachi-uchiha-naruto-amoled-black-background-minimal-art-3840x2160-6478.jpg
+-rwxrwxrwx 1 root root      59851 Dec 19  2023  itachi-uchiha-naruto-black-background-minimal-art-amoled-3840x2160-4942.png
+-rwxrwxrwx 1 root root    1614259 Jul  2 14:52  jaganadha-3492575.pdf
+-rwxrwxrwx 1 root root   99504128 Oct  3 09:45 'jenkins (2).msi'
+-rwxrwxrwx 1 root root       5117 Jul  1 20:30  jp-free-122014.protonvpn.udp.ovpn
+-rwxrwxrwx 1 root root      87290 Dec 30  2023 'lola lola.mp3'
+-rwxrwxrwx 1 root root     299287 Jul  3 12:57 'madnani 24016100008723.pdf'
+-rwxrwxrwx 1 root root     179942 Sep 19 14:19  maxresdefault.jpg
+-rwxrwxrwx 1 root root      77717 Jun  5 18:21  modified_image.png
+-rwxrwxrwx 1 root root   11117160 Feb  7  2024  mylockbox_setup.exe
+-rwxrwxrwx 1 root root    1854084 Nov  3  2023  naruto-digital-art-black-background-amoled-3840x2160-5056.png
+-rwxrwxrwx 1 root root    1764055 Nov  3  2023  naruto-uzumaki-5k-5120x2880-10669.jpg
+-rwxrwxrwx 1 root root    1315669 Dec 19  2023  naruto-uzumaki-black-background-amoled-minimal-art-5k-5120x2880-8899.png-rwxrwxrwx 1 root root    1915655 Dec 19  2023  naruto-uzumaki-minato-namikaze-black-background-amoled-5k-8k-7680x4320-8096.jpg
+drwxrwxrwx 1 root root        512 Jan 26  2024  new-year-countdown-2023-41776900_
+-rwxrwxrwx 1 root root   32459224 Jan  2  2024  nmap-7.94-setup.exe
+-rwxrwxrwx 1 root root     733448 Jul  9 11:39  offer.pdf
+-rwxrwxrwx 1 root root    2064438 Apr  9 19:07 'part1(split-video.com).mp4'
+-rwxrwxrwx 1 root root    2064438 Apr  9 19:09 'part2(split-video.com).mp4'
+-rwxrwxrwx 1 root root    2064438 Apr  9 19:10 'part3(split-video.com).mp4'
+-rwxrwxrwx 1 root root    2064438 Apr  9 19:12 'part4(split-video.com).mp4'
+drwxrwxrwx 1 root root        512 Jul  1 17:06  payslips
+-rwxrwxrwx 1 root root    3712000 Jul 10 15:18  putty-64bit-0.81-installer.msi
+-rwxrwxrwx 1 root root    3174912 Jul 10 15:17  putty-arm64-0.81-installer.msi
+-rwxrwxrwx 1 root root  490206496 Oct  3 14:17  pycharm-community-2024.2.3.exe
+-rwxrwxrwx 1 root root  806038704 Oct  3 13:50  pycharm-professional-2024.2.3.exe
+-rwxrwxrwx 1 root root   26538304 Oct  3 14:03  python-3.12.7-amd64.exe
+-rwxrwxrwx 1 root root     494930 Jul  9 11:39  rel.pdf
+-rwxrwxrwx 1 root root       1455 Jul 10 17:57  serverkey1.ppk
+-rwxrwxrwx 1 root root       1431 Jul 10 15:15  serverkeypair.ppk
+-rwxrwxrwx 1 root root     437035 Sep 23 14:07 'service card ME03.pdf'
+drwxrwxrwx 1 root root        512 Jan 20  2024  setup
+-rwxrwxrwx 1 root root       1424 Jul 10 18:39  sever2.ppk
+-rwxrwxrwx 1 root root       1448 Jul 10 18:40  sever2key.ppk
+-rwxrwxrwx 1 root root     752832 Dec 19  2023  sharingan-naruto-5k-9500x5000-10835.png
+drwxrwxrwx 1 root root        512 Jan 25  2024  signatura_monoline_script
+-rwxrwxrwx 1 root root     244936 Mar  7  2024 'stefen battery.pdf'
+-rwxrwxrwx 1 root root      77189 Sep 19 14:17  unique-mom-dad-tatoo-designs-2021-2022.jpg
+-rwxrwxrwx 1 root root       5060 Jul  1 20:31  us-free-116018.protonvpn.tcp.ovpn
+-rwxrwxrwx 1 root root    3950296 May  3 06:51  winrar-x64-700.exe
+-rwxrwxrwx 1 root root    1382844 Dec 19  2023  wp4033202-naruto-4k-wallpapers.jpg
+developer@Ishq:/mnt/c/Users/jagan/Downloads$ cd ~
+developer@Ishq:~$ sudo umount /mnt/c
+developer@Ishq:~$ ls /mnt/c
+ls: cannot access '/mnt/c/DumpStack.log.tmp': Permission denied
+ls: cannot access '/mnt/c/hiberfil.sys': Permission denied
+ls: cannot access '/mnt/c/pagefile.sys': Permission denied
+ls: cannot access '/mnt/c/swapfile.sys': Permission denied
+'$Recycle.Bin'             DumpStack.log.tmp  'Program Files (x86)'  'System Volume Information'   dell
+ Config.Msi                OneDriveTemp        ProgramData            Users                        hiberfil.sys
+'Documents and Settings'   PerfLogs            Recovery               Windows                      pagefile.sys
+ DumpStack.log            'Program Files'     'System Repair'         XboxGames                    swapfile.sys
+developer@Ishq:~$ ls /mnt/c/Users
+'All Users'   Default  'Default User'   Public   defaultuser100000   desktop.ini   jagan
+developer@Ishq:~$ ls /mnt/c/Users/jagan/Downloads
+'(Audio) WhatsApp Video 2024-09-27 at 12.01.32_42597fcd.m4a'
+'0001_I'\''m_Luffy!_The_Man_Who'\''s_Gonna.mkv'
+'0002_Enter_the_Great_Swordsman!.mkv'
+'0003_Morgan_versus_Luffy!_Who'\''s.mkv'
+'0004 - Luffy'\''s Past! Enter Red-Haired Shanks.mkv'
+'0005_A_Terrifying_Mysterious_Power!.mkv'
+'0006 - Desperate Situation! Beast Tamer Mohji vs. Luffy.mkv'
+'0007 - Epic Showdown! Swordsman Zoro vs. Acrobat Cabaji.mkv'
+'0008 - Who is the Victor Devil Fruit Power Showdown.mkv'
+'0009 - The Honorable Liar Captain Usopp.mkv'
+'0010 - The Weirdest Guy Ever! Jango the Hypnotist.mkv'
+'0535_001 (1).pdf'
+'0535_001 (2).pdf'
+ 0535_001.pdf
+'0536_001 (1).pdf'
+'0536_001 (2).pdf'
+ 0536_001.pdf
+'0582 ELON MOTORS ENGINEERING.pdf'
+ 1.USR24547RJMHT.pdf
+ 108142.jpg
+ 110948.jpg
+ 1299025.png
+ 1300588.png
+ 1300590.png
+ 1337463.png
+ 144565.jpg
+ 1709748372-AdminHR.docx
+ 1713335281433.jpg
+ 1713335281438.jpg
+ 1713335281443.jpg
+ 1713335281451.jpg
+ 1713514758130.jpg
+ 1713514758140.jpg
+ 1713514758151.jpg
+ 1713514758161.jpg
+ 1714234287541.jpg
+ 1714234287552.jpg
+ 1714234287570.jpg
+ 1714234287583.jpg
+ 1726842408175.jpg
+ 1726842408175.png
+ 1752314.jpg
+ 184779.jpg
+ 24016100008703.pdf
+'25 SSIS - Deployment.mp4'
+ 25227762-brighter-moments-ShareAE.com
+ 310745236-002b3326-a006-4fa4-81de-dee81c4dfb20.png
+ 310745411-1096e273-7988-415d-974a-0ce7aded7cbf.png
+ 310745476-f271388b-3539-4f74-88e3-e2ce6829b2e6.png
+ 310745660-7c142db4-9bc6-44b5-8302-5c4ffa408ee1.png
+ 36149051-instagram-birthday-wishes-AEdownload.com
+ 384.pdf
+ 4089686415575077_07052024.pdf
+ 410582.jpg
+ 448069485_992869769129701_3631306509744951317_n.jpg
+ 47698.png
+ 508286.jpg
+ 606231.jpg
+ 6240810fa536ae6d53119c8f77042b66.jpg
+ 703626.jpg
+ 752143.png
+ 9C2440F9D38F769B768660FE715D36572776F681.torrent
+ @FBM_New.The.Gangster.The.Cop.The.Devil.2019.720p.BluRay.mkv
+'Ac Bill.pdf'
+'Acct Statement_XX3712_13032024 (1).pdf'
+'Acct Statement_XX3712_18012024 (1).pdf'
+'Acct Statement_XX3712_18012024.pdf'
+'Adobe Scan 29-May-2024.pdf'
+ Alienware-Command-Center-Application_VG5NK_WIN_5.6.1.0_A00.exe
+'Aurita Bikes BoM Breakdown.pdf'
+'Aurita Bikes Manual_01 (1) (2) (1).pdf'
+'Aurita Bikes Manual_01 (1) (2).pdf'
+'Aurita Bikes Manual_01 (1).pdf'
+'Aurita One Pager Agreement.pdf'
+'Aurita VIdeo.mp4'
+'BPD_CDR_CONV (1).cdr'
+ Before.We.Go.English-WWW.MY-SUBS.CO.srt
+'Bike1 (1) (1).pdf'
+'Black Modern Quote Instagram Post.png'
+'Brown Modern Restaurant Food Menu Template (Instagram Story).png'
+ CCF07292012_00000.jpg
+ CCF07292012_00001.jpg
+'CH.Lakshmi - Yatra Registration Letter.pdf'
+'CV - M.BHARADWAJ.pdf'
+'Call recording 9902220615_240229_184719.m4a'
+'Charlie [2015] Malayalam DVDRip x264 700MB ESubs.srt'
+ Charlie_2015_Malayalam_1080p_BluRay_HEVC_x265_AAC_128KBPS_850MB.mkv
+ Cool-Black-And-White-Wallpapers-Resolution-1920x1080-Desktop-Backgrounds-134.jpg
+'Cycle servicing SOP.docx.pdf'
+ DC-00091.pdf
+'DC-00093 (1).pdf'
+'DC-00093 (2).pdf'
+ DC-00093.pdf
+ DC-00099.pdf
+'DC-00119 (1).pdf'
+ DC-00119.pdf
+ DC-00123.pdf
+'DC-00124 (1).pdf'
+ DC-00124.pdf
+ DC-00125.pdf
+ DC-00130.pdf
+ DC-00131.pdf
+ DC-00140.pdf
+ DC-00141.pdf
+ DOC-20240506-WA0000_
+'DOC-20240506-WA0000_ (1)'
+ DaVinci_Resolve_18.6.4_Windows
+ Dell_G15_5520_5521_G16_7620_1.19.1.exe
+ Dell_G15_5520_5521_G16_7620_1.23.0.exe
+ Dev.pem
+ Devop.pem
+ Devops.pem
+ DiscordSetup.exe
+"Do's  Don'ts.docx"
+'DocScanner Jun 25, 2024 10-35 AM.pdf'
+'DocScanner Jun 25, 2024 10-38 AM.pdf'
+'DocScanner Jun 25, 2024 10-40 AM.pdf'
+ EAadhaar_2052317340218620210809163606_2211202395010.pdf
+ EAadhaar_2052317340218620210809163606_2211202395329.pdf
+ ELEPEDOL_SAMPLE_750Watt.xls
+ EP.1.v0.1703642564.480p.mp4
+ EP.1.v2.1692758110.720p.mp4
+ EP.1.v4.1702865721.720p.mp4
+'EST-000132 (1).pdf'
+ EST-000132.pdf
+'EST-000134 (1).pdf'
+'EST-000134 (2).pdf'
+ EST-000134.pdf
+ EST-000148.pdf
+ EST-000153.pdf
+'EST-000155 (1).pdf'
+ EST-000155.pdf
+'EST-000156 (1).pdf'
+'EST-000156 (2).pdf'
+ EST-000156.pdf
+'EST-000160 (1).pdf'
+'EST-000160 (2).pdf'
+ EST-000160.pdf
+ EST-000162.pdf
+'EST-000167 (1).pdf'
+ EST-000167.pdf
+ EST-000168.pdf
+'EST-000169 (1).pdf'
+'EST-000169 (2).pdf'
+ EST-000169.pdf
+'EST-000170 (1).pdf'
+ EST-000170.pdf
+'EST-000172 (1).pdf'
+ EST-000172.pdf
+'EST-000173 (1).pdf'
+ EST-000173.pdf
+'EST-000177 (1).pdf'
+'EST-000177 (2).pdf'
+ EST-000177.pdf
+ EST-000178.pdf
+ EST-000179.pdf
+'EST-000180 (1).pdf'
+'EST-000180 (2).pdf'
+ EST-000180.pdf
+'EST-000181 (1).pdf'
+ EST-000181.pdf
+ EST-000183.pdf
+'EST-000184 (1).pdf'
+ EST-000184.pdf
+'EST-000185 (1).pdf'
+'EST-000185 (2).pdf'
+'EST-000185 (3).pdf'
+ EST-000185.pdf
+'EST-000186 (1).pdf'
+ EST-000186.pdf
+ EST-000187.pdf
+'EST-000188 (1).pdf'
+'EST-000188 (2).pdf'
+'EST-000188 (3).pdf'
+ EST-000188.pdf
+ EST-000189.pdf
+'EST-000190 (1) (1).pdf'
+'EST-000190 (1) (2).pdf'
+'EST-000190 (1) (3).pdf'
+'EST-000190 (1).pdf'
+ EST-000190.pdf
+ EST-000191.pdf
+'EST-000192 (1).pdf'
+ EST-000192.pdf
+ EST-000193.pdf
+ EST-000194.pdf
+ EST-000195.pdf
+ EST-000206.pdf
+'Exhuma.(NKIRI.COM).2024.WEB-DL.DOWNLOADED.FROM.NKIRI.COM.mkv'
+'Famous Quotes Instagram Post in White Peach and Blue Photocentric Style.png'
+ GJ2424TS005626_GL2421_30-Jun-2023.xls
+ GJ2424TS008376_GL2421_31-Jul-202302.xls
+'GJ2424TS020617_GL2421_31-Jan-2024 (1).pdf'
+ GJ2424TS020617_GL2421_31-Jan-202402.xls
+ GJ2424TS022868_GL2421_29-Feb-202402.xls
+ GeForce_Experience_v3.27.0.120.exe
+'Gear Set-20240527T065943Z-001.zip'
+ Git-2.45.2-64-bit.exe
+ Git-2.46.2-64-bit.exe
+'Gray Modern Aesthetic Daily Quotes Instagram Post.png'
+ Handout____Introduction_to_AWS_Services__Compute,_Storage,_Databases.pdf
+'Hari krishna powder.pdf'
+'Hey Lola.mp3'
+'How to Read a Book'
+ IN-KP24-25006.pdf
+ IN-KP24-25008.pdf
+ IN-KP24-25009.pdf
+ IN-KP24-25022.pdf
+ INV23-24000044.pdf
+ INV23-24000060.pdf
+ INV23-24000072.pdf
+'INV23-24000219 (1).pdf'
+'INV23-24000219 (2).pdf'
+'INV23-24000219 (3).pdf'
+'INV23-24000219 (4).pdf'
+ INV23-24000219.pdf
+ INV23-24000221.pdf
+ INV23-24000223.pdf
+ INV23-24000224.pdf
+ INV23-24000225.pdf
+ INV23-24000226.pdf
+ INV23-24000227.pdf
+'INV23-24000228 (1).pdf'
+ INV23-24000228.pdf
+'INV23-24000229 (1).pdf'
+ INV23-24000229.pdf
+'INV23-24000230 (1).pdf'
+ INV23-24000230.pdf
+'INV23-24000231 (1).pdf'
+ INV23-24000231.pdf
+'INV23-24000232 (1).pdf'
+ INV23-24000232.pdf
+'INV23-24000233 (1).pdf'
+ INV23-24000233.pdf
+'INV23-24000234 (1).pdf'
+ INV23-24000234.pdf
+'INV23-24000235 (1).pdf'
+ INV23-24000235.pdf
+'INV23-24000236 (1).pdf'
+ INV23-24000236.pdf
+'INV23-24000237 (1).pdf'
+ INV23-24000237.pdf
+'INV23-24000238 (1).pdf'
+ INV23-24000238.pdf
+'INV23-24000239 (1).pdf'
+ INV23-24000239.pdf
+'INV23-24000240 (1).pdf'
+ INV23-24000240.pdf
+ INV23-24000241.pdf
+'INV23-24000242 (1).pdf'
+ INV23-24000242.pdf
+ INV23-24000243.pdf
+'INV23-24000245 (1).pdf'
+ INV23-24000245.pdf
+'INV24-25000002 (1).pdf'
+ INV24-25000002.pdf
+ INV24-25000003.pdf
+ INV24-25000004.pdf
+ INV24-25000005.pdf
+'INV24-25000008 (1).pdf'
+ INV24-25000008.pdf
+ Image_Editor.png
+"In the city's heart, where dreams take flight, I stand alone, bathed in the city's light. Her words, like whispers in the breeze, Can't possible, they echo with ease..mp4"
+ Intel-Chipset-Device-Software_RVRV0_WIN_10.1.19468.8385_A23_06.EXE
+ Intel-HID-Event-Filter-Driver_YR94R_WIN_2.2.1.386_A17_04.EXE
+'Intel-Management-Engine-Interface-Driver_M1G5C_WIN64_2313.4.16.0_A03 (1).EXE'
+ Intel-Management-Engine-Interface-Driver_M1G5C_WIN64_2313.4.16.0_A03.EXE
+ Intel-UHD-Iris-Xe-Graphics-Driver_H0250_WIN64_31.0.101.4575_A05.EXE
+ Invoice_2827740546600.pdf
+ Invoice_2827740597641.pdf
+ Invoice_2827740653346.pdf
+ Invoice_2827740854880.pdf
+ Invoice_2827740855473.pdf
+ Invoice_2827740888104.pdf
+ Invoice_28277409029444.pdf
+ Invoice_2827741045431.pdf
+ Invoice_2827741051263.pdf
+ Invoice_2827741178243.pdf
+ Invoice_2827741301222.pdf
+ Invoice_2827741465814.pdf
+ Invoice_2827741468485.pdf
+ Invoice_2827741473396.pdf
+ Invoice_28277417200066.pdf
+ Invoice_2827741729574.pdf
+ Invoice_28277418067955.pdf
+ Invoice_2827742206834.pdf
+ Invoice_2827742342800.pdf
+ Invoice_28277423433122.pdf
+ Invoice_28277425534266.pdf
+ Invoice_T17111H7N0U61W5944.pdf
+ Invoice_T171195XT2H85882Z6.pdf
+'Jaganadha operations.docx'
+ Jaganadha.docx
+ Jaganadha.pdf
+'Jalaram lithium.PDF'
+ Jalaram.PDF
+'KBN corporation .pdf'
+'KNP-AMD 23016100072141.pdf'
+'LOG ON LOGISTICS.pdf'
+'Letter of Appointment Draft.docx'
+ Linux.md
+'Log on Logistics (3).pdf'
+'Log on logistics (2).pdf'
+ Lola.mp3
+'MEW-March-E-Way Bill System.pdf'
+ MH_01425.png
+ MH_01481.png
+ MP2324TS006944_GL2421_31-Jul-202302.xls
+'Midnight Magic.docx'
+ MobaXterm_Installer_v24.2
+'MobaXterm_Installer_v24.2 (1).zip'
+ MobaXterm_Installer_v24.2.zip
+'Motivational Quotes Instagram Post in Pink Square Border Style.png'
+'NR7603110170394775 Invoice.pdf'
+'Natsamrat (2016) [WEBRip] [1080p] [YTS.AM].torrent'
+'Natsamrat 2016 WebRip 720p Marathi AAC 5.1 x264 ES.mkv'
+'New Doc 04-19-2024 18.55.pdf'
+'New Doc 04-19-2024 18.56 (1).pdf'
+'New Doc 04-19-2024 18.56.pdf'
+'New Doc 04-19-2024 18.58.pdf'
+'New Doc 2024-03-12 11.53.40.pdf'
+'New Project - Made with Clipchamp.mp4'
+ OIG.jpg
+ OIP.jpeg
+'PO - 4500017445 ( Elon Motors Engineering Pvt. Ltd.PDF'
+ PackageSlip_T1708CJ4944PU64973.pdf
+ PackageSlip_T1708J765GCP900382.pdf
+ PackageSlip_T1708K51G07975A8F4.pdf
+ PackageSlip_T1709534ABO7721W92.pdf
+ PackageSlip_T170LJ80R627W50935.pdf
+ PackageSlip_T170Q8N43C0V177267.pdf
+ PackageSlip_T170U87596Y2819QW2.pdf
+ PackageSlip_T17111H7N0U61W5944.pdf
+ PackageSlip_T17114565ETAH98957.pdf
+ PackageSlip_T171195XT2H85882Z6.pdf
+ PackageSlip_T171TD01R35G202407.pdf
+ PackageSlip_T17J095EM310787W92.pdf
+ PackageSlip_T17O0V9205K894I893.pdf
+ PackageSlip_T17Y0952I8718BE354.pdf
+ PackageSlip_T1OF7110AK23225582.pdf
+ PackageSlip_T1S7B09958N183L543.pdf
+ PackageSlip_T1WQ71082J238F3843.pdf
+'PackageSlip_TC1711D023S7103V65 (1).pdf'
+ PackageSlip_TC1711D023S7103V65.pdf
+ PackageSlip_TC17I08430909F9A72.pdf
+ PackageSlip_TI1709015A1W3160O2.pdf
+ PackageSlip_TV17P09968S04A3589.pdf
+ Payslip_EM0017_Apr_2024_4936891793864351813_1715234185959.pdf
+ Payslip_EM0017_Feb_2024_3339405166757695328_1713608662245.pdf
+ Payslip_EM0017_Feb_2024_5070821092577543546_1713608563773.pdf
+ Payslip_EM0017_Jan_2024_644651007364315457_1713608656071.pdf
+ Payslip_EM0017_Mar_2024_1556457908490471654_1713590020746.pdf
+ Payslip_EM0017_Mar_2024_2211084357769688561_1713590369039.pdf
+ Payslip_EM0017_Mar_2024_2434391236769141011_1713589880300.pdf
+ Payslip_EM0017_Mar_2024_4831700106272855783_1713590023190.pdf
+ Payslip_EM0017_Mar_2024_8178123711484931438_1713589331453.pdf
+ Payslip_EM0017_Mar_2024_8654456030158122694_1713590382907.pdf
+ Payslip_EM0018_Dec_2023_8796564745902112200_1715928606918.pdf
+ Payslip_EM0018_Feb_2024_2742406155236172785_1715928671887.pdf
+ Payslip_EM0018_Jan_2024_3592374173472652968_1715928761468.pdf
+ Payslip_EM0018_Mar_2024_2883117111443386373_1715928689707.pdf
+ Payslip_EM002_Jul_2024_757090436291864388_1720519494431.pdf
+ Payslip_EM002_Jun_2024_1675129224162723235_1720519476513.pdf
+ Payslip_EM002_May_2024_5044417483500400337_1720519025703.pdf
+'Pehle-Bhi-Main_320(PaglaSongs) [music].mp3'
+'Pehle-Bhi-Main_320(PaglaSongs).mp3'
+ Phone
+'Prince Marketing.pdf'
+ QuickShare_2403171146.zip
+ QuickShare_2405281436.zip
+'Raju Bill copy.pdf'
+ Rave-x64-Setup-1.11.6.exe
+'Referencing Questionnaire (1).pdf'
+'Referencing Questionnaire.pdf'
+ S12_Sep21st.mp4
+ S19_Oct1st.mp4
+ S20_ocrt2nd.mp4
+ SMPL-11.CSV
+ SMPL-12.CSV
+ SMPL-13.CSV
+'SMPL-14 (1).CSV'
+ SMPL-14.CSV
+'SOP Format (1).v2.2.docx'
+ Screenshot_28-8-2024_192649_.jpeg
+'Shreeji enterpr.pdf'
+'Shyam industry.pdf'
+ Siddharth-Roy-Telugu-tch5k-2024.mp4
+'Simple personal budget.xlsx'
+ Snapinsta.app_video_24471CE3CE26B56472E25074A2BB6DA3_video_dashinit.mp4
+ Something.Borrowed.2011.720p.BluRay.x264.950MB-Pahe.in.mkv.mkv
+ Soulmate.2023.mkv
+'Spreadsheet Template_ Analyze Your Wealth.xlsx'
+ SteamSetup.exe
+ SupportAssistLauncher.exe
+ Suzume.2022.720p.BluRay.x264.950MB-Pahe.in.mkv
+ Teddy.jpg
+'Unconfirmed 104879.crdownload'
+'Unconfirmed 491067.crdownload'
+'Updated One Pager Agreement.docx'
+ VID-20240429-WA0005.mp4
+ VID-20240628-WA0007.mp4
+ VID_20240427_194423.mp4
+'WhatsApp Chat with Maithli @ Snap.zip'
+'WhatsApp Image 2023-12-29 at 2.19.34 PM.jpeg'
+'WhatsApp Image 2023-12-29 at 2.19.45 PM.jpeg'
+'WhatsApp Image 2024-03-05 at 18.39.15_e2ba85db (1).pdf'
+'WhatsApp Image 2024-03-05 at 18.39.15_e2ba85db.pdf'
+'WhatsApp Image 2024-03-12 at 12.09.14 PM.jpeg'
+'WhatsApp Image 2024-03-12 at 12.09.15 PM.jpeg'
+'WhatsApp Image 2024-03-13 at 4.55.53 PM.jpeg'
+'WhatsApp Image 2024-03-13 at 4.58.17 PM.jpeg'
+'WhatsApp Image 2024-03-21 at 19.50.14_29e97779.jpg'
+'WhatsApp Image 2024-04-06 at 12.29.10 PM.jpeg'
+'WhatsApp Image 2024-04-06 at 12.29.22 PM.jpeg'
+'WhatsApp Image 2024-04-08 at 10.22.59 AM (1).jpeg'
+'WhatsApp Image 2024-04-08 at 10.22.59 AM.jpeg'
+'WhatsApp Image 2024-04-08 at 10.23.00 AM.jpeg'
+'WhatsApp Image 2024-04-10 at 5.17.30 PM.jpeg'
+'WhatsApp Image 2024-04-10 at 5.17.36 PM.jpeg'
+'WhatsApp Image 2024-05-29 at 12.40.01 PM.jpeg'
+'WhatsApp Image 2024-06-04 at 4.59.35 PM.jpeg'
+'WhatsApp Image 2024-06-04 at 4.59.36 PM (1).jpeg'
+'WhatsApp Image 2024-06-04 at 4.59.36 PM.jpeg'
+'WhatsApp Image 2024-06-06 at 11.39.11 AM.jpeg'
+'WhatsApp Image 2024-06-07 at 11.09.03 AM.jpeg'
+'WhatsApp Image 2024-06-07 at 11.09.09 AM.jpeg'
+'WhatsApp Image 2024-06-07 at 11.09.31 AM.jpeg'
+'WhatsApp Image 2024-06-12 at 12.26.00 PM.jpeg'
+'WhatsApp Image 2024-06-14 at 12.15.44 PM.jpeg'
+'WhatsApp Image 2024-06-24 at 10.56.59 AM.jpeg'
+'WhatsApp Image 2024-06-24 at 10.57.00 AM.jpeg'
+'WhatsApp Image 2024-06-24 at 10.57.01 AM.jpeg'
+'WhatsApp Image 2024-06-24 at 11.06.03 AM.jpeg'
+'WhatsApp Image 2024-07-02 at 4.21.53 PM (1).jpeg'
+'WhatsApp Image 2024-07-02 at 4.21.53 PM.jpeg'
+'WhatsApp Image 2024-07-02 at 6.29.22 PM (1).jpeg'
+'WhatsApp Image 2024-07-02 at 6.29.22 PM.jpeg'
+'WhatsApp Image 2024-07-04 at 12.56.39 PM (1).jpeg'
+'WhatsApp Image 2024-07-04 at 12.56.39 PM (2).jpeg'
+'WhatsApp Image 2024-07-04 at 12.56.39 PM.jpeg'
+'WhatsApp Image 2024-07-04 at 12.56.40 PM.jpeg'
+'WhatsApp Image 2024-07-11 at 12.33.33 PM.jpeg'
+'WhatsApp Image 2024-07-11 at 12.34.02 PM (1).jpeg'
+'WhatsApp Image 2024-07-11 at 12.34.02 PM.jpeg'
+'WhatsApp Image 2024-07-11 at 12.34.04 PM.jpeg'
+'WhatsApp Image 2024-07-11 at 12.49.24 PM.jpeg'
+'WhatsApp Image 2024-07-11 at 12.49.46 PM (1).jpeg'
+'WhatsApp Image 2024-07-11 at 12.49.46 PM (2).jpeg'
+'WhatsApp Image 2024-07-11 at 12.49.46 PM.jpeg'
+'WhatsApp Image 2024-07-11 at 12.49.47 PM.jpeg'
+'WhatsApp Image 2024-07-11 at 12.49.48 PM.jpeg'
+'WhatsApp Image 2024-07-11 at 12.49.50 PM.jpeg'
+'WhatsApp Image 2024-07-11 at 12.49.51 PM.jpeg'
+'WhatsApp Image 2024-07-29 at 6.30.22 PM.jpeg'
+'WhatsApp Installer.exe'
+'WhatsApp Video 2024-06-24 at 10.56.59 AM.mp4'
+'WhatsApp Video 2024-06-28 at 11.34.10 AM.mp4'
+'WhatsApp Video 2024-07-03 at 10.52.40 AM.mp4'
+'WhatsApp Video 2024-07-24 at 10.29.31 AM.mp4'
+'White And Red Professional Company Letterhead (1) (1).docx'
+'White And Red Professional Company Letterhead (1).docx'
+'White And Red Professional Company Letterhead (1).pdf'
+'White And Red Professional Company Letterhead.pdf'
+'Who.Am.I.2014.BluRay.720p.650MB.Ganool @RickyChannel.mkv'
+'Yatra Registration Letter - UTDB (1).pdf'
+'[MCU] Napoleon (2023) [HQ HDRip - x264 - [Eng + Hin] - AAC -.mkv'
+'[iSongs.info] 05 - Evarevaro.mp3'
+ _77334445-d184-4b49-8a3d-04006d864a6e-removebg.png
+ _77334445-d184-4b49-8a3d-04006d864a6e.jpg
+ _Getintopc.com_Adobe_After_Effects_v23.2.1.3
+'all india (1).pdf'
+'all india.pdf'
+ asset-v1_IIMBx+OM101.1x+1T2024+type@asset+block@BM_IOM_W01_C01A_Template.pdf
+'audio [music].mp3'
+'certificate (1).pdf'
+ certificate.pdf
+ chintu.sri81_312.jpg
+ desktop.ini
+'download_(10)[1] (1).xlsx'
+'download_(10)[1].pdf'
+'elon motors red & black (1).png'
+'elon motors red & black (1)1.png'
+'elon motors red & black (2).png'
+'elon motors red & black (3) (1) (1).png'
+'elon motors red & black (3) (1) (1)1.png'
+'elon motors red & black (3) (1).png'
+'elon motors red & black (3).png'
+'elon motors red & black (4).png'
+'elon motors red & black (4)G.png'
+'elon motors red & black (5).png'
+'elon motors red & black (5)f.png'
+'elon motors red & black.png'
+ exp.pdf
+ gilroy-extrabold
+ hike.pdf
+ invoice_CRN1045899199.pdf
+ invoice_CRN1225269520.pdf
+ invoice_CRN1251462306.pdf
+ invoice_CRN1267714593.pdf
+ invoice_CRN1272992433.pdf
+ invoice_CRN1274203884.pdf
+ invoice_CRN1276540732.pdf
+ invoice_CRN1361112667.pdf
+ invoice_CRN1390529957.pdf
+ invoice_CRN1410867776.pdf
+ invoice_CRN1412935162.pdf
+ invoice_CRN1501436391.pdf
+ invoice_CRN1539219440.pdf
+ invoice_CRN1548436408.pdf
+ invoice_CRN1595435950.pdf
+ invoice_CRN1640296392.pdf
+ invoice_CRN1645239352.pdf
+ invoice_CRN1683096459.pdf
+ invoice_CRN1835236820.pdf
+ invoice_CRN1885717065.pdf
+ invoice_CRN1968973736.pdf
+ invoice_CRN1999687415.pdf
+developer@Ishq:~$
+ invoice_CRN2005967811.pdf
+ invoice_CRN2008016040.pdf
+ invoice_CRN2015790693.pdf
+ invoice_CRN2068160529.pdf
+ invoice_CRN2130890750.pdf
+ itachi-uchiha-naruto-amoled-black-background-minimal-art-3840x2160-6478.jpg
+ itachi-uchiha-naruto-black-background-minimal-art-amoled-3840x2160-4942.png
+ jaganadha-3492575.pdf
+'jenkins (2).msi'
+ jp-free-122014.protonvpn.udp.ovpn
+'lola lola.mp3'
+'madnani 24016100008723.pdf'
+ maxresdefault.jpg
+ modified_image.png
+ mylockbox_setup.exe
+ naruto-digital-art-black-background-amoled-3840x2160-5056.png
+ naruto-uzumaki-5k-5120x2880-10669.jpg
+ naruto-uzumaki-black-background-amoled-minimal-art-5k-5120x2880-8899.png
+ naruto-uzumaki-minato-namikaze-black-background-amoled-5k-8k-7680x4320-8096.jpg
+ new-year-countdown-2023-41776900_
+ nmap-7.94-setup.exe
+ offer.pdf
+'part1(split-video.com).mp4'
+'part2(split-video.com).mp4'
+'part3(split-video.com).mp4'
+'part4(split-video.com).mp4'
+ payslips
+ putty-64bit-0.81-installer.msi
+ putty-arm64-0.81-installer.msi
+ pycharm-community-2024.2.3.exe
+ pycharm-professional-2024.2.3.exe
+ python-3.12.7-amd64.exe
+ rel.pdf
+ serverkey1.ppk
+ serverkeypair.ppk
+'service card ME03.pdf'
+ setup
+ sever2.ppk
+ sever2key.ppk
+ sharingan-naruto-5k-9500x5000-10835.png
+ signatura_monoline_script
+'stefen battery.pdf'
+ unique-mom-dad-tatoo-designs-2021-2022.jpg
+ us-free-116018.protonvpn.tcp.ovpn
+ winrar-x64-700.exe
+ wp4033202-naruto-4k-wallpapers.jpg
+developer@Ishq:~$ scp -o StrictHostKeyChecking=no -i /mnt/d/AWS\ Devops/Devop.pem -r /home/developer/Jenkinstest/file1 ec2-13-235-104-54.ap-south-1.compute.amazonaws.com:/home/ec2-user
+Warning: Permanently added 'ec2-13-235-104-54.ap-south-1.compute.amazonaws.com' (ED25519) to the list of known hosts.
+developer@ec2-13-235-104-54.ap-south-1.compute.amazonaws.com: Permission denied (publickey,gssapi-keyex,gssapi-with-mic).
+lost connection
